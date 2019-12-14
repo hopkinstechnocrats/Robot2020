@@ -30,13 +30,14 @@ public class TankDriveTest {
 
         //Act
         TankDrive drive = new TankDrive(mocktalonleft1, mocktalonleft2, mocktalonright1, mocktalonright2);
-        drive.tankDrive(1.0, 1.0, false);
-
-        //Assert
-        verify(mocktalonleft1).set((double)1.0);
-        verify(mocktalonleft2).set((double)1.0);
-        verify(mocktalonright1).set((double)-1.0);
-        verify(mocktalonright2).set((double)-1.0);
+        for (double i=-1; i<1; i+=0.1){
+            drive.tankDrive(i, i, false);
+            System.out.println(i);
+            verify(mocktalonleft1).set((double)i);
+            verify(mocktalonleft2).set((double)i);
+            verify(mocktalonright1).set((double)-i);
+            verify(mocktalonright2).set((double)-i);
+        }
         
     }
 }
