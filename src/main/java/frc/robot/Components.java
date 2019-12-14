@@ -2,26 +2,43 @@ package frc.robot;
 
 import java.util.HashMap;
 import frc.robot.logger.Status; //still needs to be implemented
-import frc.components.Component;
+import frc.robot.components.Component;
+import frc.robot.components.Talon;
+import java.util.ArrayList;
 
 public class Components {
     private HashMap<String,Component> components;
 
     public Components() {
-        
-        //instantiate components from frc.components.* here
+        components = new HashMap<String, Component>();
+        addComponent("LeftTalon1", new Talon(1));
+        addComponent("LeftTalon2", new Talon(2));
+        addComponent("RightTalon1", new Talon(3));
+        addComponent("RightTalon2", new Talon(4));
     }
 
-    private addComponent(Component component){
-        components.put(component.name, component)
+    private void addComponent(String name, Component component){
+        components.put(name, component);
     }
     
-    public Status checkComponents (){
-        //return status of each components
+    public ArrayList<Status> checkComponents(){
+        ArrayList<Status> compstatuses = new ArrayList<Status>();
+        for (Component comp : components.values()) {
+            compstatuses.add(comp.getStatus());
+        }
+        return compstatuses;
     }
 
-    public Component getComponentByName(String name){
-        return components.get(name);
+    public Component getComponent(String name){
+        
+        // try {
+            return components.get(name);
+        // }
+        // catch (Exception e) {
+        //     System.out.println("Components doesn't include \""+name+"\"");
+
+        // }
+
     }
 
 }

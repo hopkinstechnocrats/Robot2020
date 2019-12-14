@@ -7,8 +7,8 @@ import frc.robot.logger.*;
  */
 public abstract class Component {
 
-    public Status getStatus(){
+    public String name;
 
-    }
+    public abstract Status getStatus();
     
 }

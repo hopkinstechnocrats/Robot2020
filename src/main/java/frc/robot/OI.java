@@ -7,11 +7,39 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.buttons.POVButton;
+import frc.robot.commands.*;
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
+
+  public XboxController controller;
+  POVButton up = new POVButton(controller, 0);
+  POVButton upLeft = new POVButton(controller, 45);
+  POVButton left = new POVButton(controller, 90);
+  POVButton downLeft = new POVButton(controller, 135);
+  POVButton down = new POVButton(controller, 180);
+  POVButton downRight = new POVButton(controller, 225);
+  POVButton right = new POVButton(controller, 270);
+  POVButton upRight = new POVButton(controller, 315);
+
+  public OI(){
+
+    controller = new XboxController(0);
+
+    up.whenPressed(new SetDriveSpeed(1.0));
+    left.whenPressed(new SetDriveSpeed(.75));
+    down.whenPressed(new SetDriveSpeed(.5));
+    right.whenPressed(new SetDriveSpeed(.25));
+
+  }
+
+  public XboxController getXboxController(){
+    return controller;
+  }
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
   //// joystick.

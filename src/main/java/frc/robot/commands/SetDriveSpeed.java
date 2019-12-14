@@ -13,10 +13,12 @@ import frc.robot.Robot;
 /**
  * An example command.  You can replace me with your own command.
  */
-public class ExampleCommand extends Command {
-  public ExampleCommand() {
-    // Use requires() here to declare subsystem dependencies
-    requires(Robot.m_subsystem);
+public class SetDriveSpeed extends Command {
+
+  private double speed;
+
+  public SetDriveSpeed(double speed) {
+    this.speed = speed;
   }
 
   // Called just before this Command runs the first time
@@ -27,12 +29,13 @@ public class ExampleCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.tankDrive.setSpeed(speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true
