@@ -26,7 +26,7 @@ public class TankDrive extends Subsystem {
   SpeedControllerGroup left;
   SpeedControllerGroup right;
   DifferentialDrive diffdrive;
-  public double speed = .75;
+  public double speed = 0.75;
   public boolean flipped = false;
   
   public TankDrive(Talon leftTalon1, Talon leftTalon2, Talon rightTalon1, Talon rightTalon2) {
@@ -36,13 +36,13 @@ public class TankDrive extends Subsystem {
   }
 
   public void tankDrive(double left, double right, boolean isSquared){
-    diffdrive.tankDrive(left, right, isSquared);
+    diffdrive.tankDrive(speed*left, speed*right, isSquared);
   }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    setDefaultCommand(new JoystickDrive(diffdrive, speed, .01, false, true));
+    setDefaultCommand(new JoystickDrive(this, Robot.oi.getXboxController(), .01, false, true));
   }
 
   public void setSpeed(double speed){

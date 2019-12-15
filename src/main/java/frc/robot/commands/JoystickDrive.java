@@ -7,30 +7,28 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.subsystems.TankDrive;
 import frc.robot.Robot;
 
-/**
- * An example command.  You can replace me with your own command.
- */
 public class JoystickDrive extends Command {
 
-  DifferentialDrive drivetrain;
-  double speed;
+  TankDrive drivetrain;
   double deadband;
   boolean isFlipped;
   boolean isSquared;
+  XboxController controller;
 
-  public JoystickDrive(DifferentialDrive drivetrain, double speed, double deadband, boolean isFlipped, boolean isSquared) {
+  public JoystickDrive(TankDrive drivetrain, XboxController controller, double deadband, boolean isFlipped, boolean isSquared) {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.tankDrive);
+    requires(drivetrain);
     this.drivetrain = drivetrain;
-    this.speed = speed;
     this.deadband = deadband;
     this.isFlipped = isFlipped;
     this.isSquared = isSquared;
+    this.controller = controller;
   }
 
   // Called just before this Command runs the first time
@@ -43,9 +41,9 @@ public class JoystickDrive extends Command {
   protected void execute() {
     if(Math.abs(Robot.oi.controller.getRawAxis(1)) > deadband || Math.abs(Robot.oi.controller.getRawAxis(4)) > deadband){
       if(isFlipped){
-        drivetrain.tankDrive(-speed*Robot.oi.controller.getRawAxis(1), -speed*Robot.oi.controller.getRawAxis(4), isSquared);
+        drivetrain.tankDrive(Robot.oi.controller.getRawAxis(1), -Robot.oi.controller.getRawAxis(4), isSquared);
       }else{
-        drivetrain.tankDrive(speed*Robot.oi.controller.getRawAxis(1), speed*Robot.oi.controller.getRawAxis(4), isSquared);
+        drivetrain.tankDrive(Robot.oi.controller.getRawAxis(1), Robot.oi.controller.getRawAxis(4), isSquared);
       }
     }
   }
