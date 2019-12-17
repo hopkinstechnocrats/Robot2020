@@ -10,11 +10,13 @@ package frc.robot.subsystems;
 import java.util.HashMap;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Components;
 import frc.robot.commands.JoystickDrive;
 import frc.robot.components.*;
+import frc.robot.Robot;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
@@ -26,13 +28,15 @@ public class TankDrive extends Subsystem {
   SpeedControllerGroup left;
   SpeedControllerGroup right;
   DifferentialDrive diffdrive;
-  public double speed = 0.75;
+  XboxController controller;
+  public double speed = 1;
   public boolean flipped = false;
   
-  public TankDrive(Talon leftTalon1, Talon leftTalon2, Talon rightTalon1, Talon rightTalon2) {
+  public TankDrive(Talon leftTalon1, Talon leftTalon2, Talon rightTalon1, Talon rightTalon2, XboxController controller) {
     left = new SpeedControllerGroup(leftTalon1, leftTalon2);
     right = new SpeedControllerGroup(rightTalon1, rightTalon2);
     diffdrive = new DifferentialDrive(left, right);
+    this.controller = controller;
   }
 
   public void tankDrive(double left, double right, boolean isSquared){
@@ -42,7 +46,7 @@ public class TankDrive extends Subsystem {
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    setDefaultCommand(new JoystickDrive(this, Robot.oi.getXboxController(), .01, false, true));
+    setDefaultCommand(new JoystickDrive(this, controller, .01, false, true));
   }
 
   public void setSpeed(double speed){

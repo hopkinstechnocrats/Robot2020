@@ -23,9 +23,9 @@ import frc.robot.subsystems.TankDrive;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static TankDrive tankDrive;
-  public static OI oi;
-  public static Components components;
+  public static Components components = new Components();
+  public static OI oi = new OI();
+  public static TankDrive tankDrive = new TankDrive((Talon)components.getComponent("leftTalon1"), (Talon)components.getComponent("leftTalon2"), (Talon)components.getComponent("rightTalon1"), (Talon)components.getComponent("rightTalon2"), oi.getXboxController());
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -35,9 +35,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    oi = new OI();
-    components = new Components();
-    tankDrive = new TankDrive((Talon)components.getComponent("leftTalon1"), (Talon)components.getComponent("leftTalon2"), (Talon)components.getComponent("rightTalon1"), (Talon)components.getComponent("rightTalon2"));
+    
+    //tankDrive = new TankDrive((Talon)components.getComponent("leftTalon1"), (Talon)components.getComponent("leftTalon2"), (Talon)components.getComponent("rightTalon1"), (Talon)components.getComponent("rightTalon2"));
     // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     // SmartDashboard.putData("Auto mode", m_chooser);

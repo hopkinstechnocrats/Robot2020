@@ -16,6 +16,7 @@ public class TankDriveTest {
     Talon mocktalonright1;
     Talon mocktalonright2;
     TankDrive drive;
+    XboxController controller;
 
     @Before
     public void setup() {
@@ -23,7 +24,8 @@ public class TankDriveTest {
         mocktalonleft2 = mock(Talon.class);
         mocktalonright1 = mock(Talon.class);
         mocktalonright2 = mock(Talon.class);
-        drive = new TankDrive(mocktalonleft1, mocktalonleft2, mocktalonright1, mocktalonright2);
+        controller = mock(XboxController.class);
+        drive = new TankDrive(mocktalonleft1, mocktalonleft2, mocktalonright1, mocktalonright2, controller);
     }
 
     @Test
@@ -38,9 +40,9 @@ public class TankDriveTest {
     }
 
     @Test
-    public void testDriveForwardHalf() {
-        double leftspeed = 0.5;
-        double rightspeed = 0.5;
+    public void testDriveForwardMostly() {
+        double leftspeed = 0.99;
+        double rightspeed = 0.99;
         drive.tankDrive(leftspeed, rightspeed, false);
         verify(mocktalonleft1).set(leftspeed);
         verify(mocktalonleft2).set(leftspeed);
