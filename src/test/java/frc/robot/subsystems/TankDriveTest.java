@@ -124,10 +124,10 @@ public class TankDriveTest {
         double leftspeed = 0.5;
         double rightspeed = -0.5;
         drive.tankDrive(leftspeed, rightspeed, false);
-        verify(mocktalonleft1).set((double)leftspeed);
-        verify(mocktalonleft2).set((double)leftspeed);
-        verify(mocktalonright1).set((double)-rightspeed);
-        verify(mocktalonright2).set((double)-rightspeed);
+        verify(mocktalonleft1).set(applyDeadband(leftspeed));
+        verify(mocktalonleft2).set(applyDeadband(leftspeed));
+        verify(mocktalonright1).set(-applyDeadband(rightspeed));
+        verify(mocktalonright2).set(-applyDeadband(rightspeed));
     }
 
     @Test
