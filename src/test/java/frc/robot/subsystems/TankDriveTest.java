@@ -52,112 +52,58 @@ public class TankDriveTest {
 
     @Test
     public void testDriveFowardFull() {
-        // double leftspeed = 1;
-        // double rightspeed = 1;
-        // drive.tankDrive(leftspeed, rightspeed, false);
-        // verify(mocktalonleft1).set(applyDeadband(leftspeed));
-        // verify(mocktalonleft2).set(applyDeadband(leftspeed));
-        // verify(mocktalonright1).set(-applyDeadband(rightspeed));
-        // verify(mocktalonright2).set(-applyDeadband(rightspeed));
         testDriveTemplate(1,1);
     }
 
     @Test
     public void testDriveForwardHalf() {
-        double leftspeed = 0.5;
-        double rightspeed = 0.5;
-        drive.tankDrive(leftspeed, rightspeed, false);
-        verify(mocktalonleft1).set(applyDeadband(leftspeed));
-        verify(mocktalonleft2).set(applyDeadband(leftspeed));
-        verify(mocktalonright1).set(-applyDeadband(rightspeed));
-        verify(mocktalonright2).set(-applyDeadband(rightspeed));
+        testDriveTemplate(0.5, 0.5);
     }
 
     @Test
     public void testDriveBackwardFull() {
-        double leftspeed = -1;
-        double rightspeed = -1;
-        drive.tankDrive(leftspeed, rightspeed, false);
-        verify(mocktalonleft1).set(applyDeadband(leftspeed));
-        verify(mocktalonleft2).set(applyDeadband(leftspeed));
-        verify(mocktalonright1).set(-applyDeadband(rightspeed));
-        verify(mocktalonright2).set(-applyDeadband(rightspeed));
+        testDriveTemplate(-1, -1);
     }
 
     @Test
     public void testDriveBackwardHalf() {
-        double leftspeed = -0.5;
-        double rightspeed = -0.5;
-        drive.tankDrive(leftspeed, rightspeed, false);
-        verify(mocktalonleft1).set(applyDeadband(leftspeed));
-        verify(mocktalonleft2).set(applyDeadband(leftspeed));
-        verify(mocktalonright1).set(-applyDeadband(rightspeed));
-        verify(mocktalonright2).set(-applyDeadband(rightspeed));
+        testDriveTemplate(-0.5, -0.5);
+        
     }
 
     @Test
     public void testDriveStill() {
-        double leftspeed = 0;
-        double rightspeed = 0;
-        drive.tankDrive(leftspeed, rightspeed, false);
-        verify(mocktalonleft1).set(applyDeadband(leftspeed));
-        verify(mocktalonleft2).set(applyDeadband(leftspeed));
-        verify(mocktalonright1).set(-applyDeadband(rightspeed));
-        verify(mocktalonright2).set(-applyDeadband(rightspeed));
+        testDriveTemplate(0, 0);
+      
     }
 
     @Test
     public void testTurnRightFull() {
-        double leftspeed = 1;
-        double rightspeed = -1;
-        drive.tankDrive(leftspeed, rightspeed, false);
-        verify(mocktalonleft1).set(applyDeadband(leftspeed));
-        verify(mocktalonleft2).set(applyDeadband(leftspeed));
-        verify(mocktalonright1).set(-applyDeadband(rightspeed));
-        verify(mocktalonright2).set(-applyDeadband(rightspeed));
+        testDriveTemplate(1, -1);
+
     }
 
     @Test
     public void testTurnLeftFull() {
-        double leftspeed = -1;
-        double rightspeed = 1;
-        drive.tankDrive(leftspeed, rightspeed, false);
-        verify(mocktalonleft1).set(applyDeadband(leftspeed));
-        verify(mocktalonleft2).set(applyDeadband(leftspeed));
-        verify(mocktalonright1).set(-applyDeadband(rightspeed));
-        verify(mocktalonright2).set(-applyDeadband(rightspeed));
+        testDriveTemplate(-1, 1);
+
     }
 
     @Test
     public void testTurnRightHalf() {
-        double leftspeed = 0.5;
-        double rightspeed = -0.5;
-        drive.tankDrive(leftspeed, rightspeed, false);
-        verify(mocktalonleft1).set(applyDeadband(leftspeed));
-        verify(mocktalonleft2).set(applyDeadband(leftspeed));
-        verify(mocktalonright1).set(-applyDeadband(rightspeed));
-        verify(mocktalonright2).set(-applyDeadband(rightspeed));
+        testDriveTemplate(0.5, -0.5);
+
     }
 
     @Test
     public void testTurnLeftHalf() {
-        double leftspeed = -0.5;
-        double rightspeed = 0.5;
-        drive.tankDrive(leftspeed, rightspeed, false);
-        verify(mocktalonleft1).set(applyDeadband(leftspeed));
-        verify(mocktalonleft2).set(applyDeadband(leftspeed));
-        verify(mocktalonright1).set(-applyDeadband(rightspeed));
-        verify(mocktalonright2).set(-applyDeadband(rightspeed));
+        testDriveTemplate(-0.5, 0.5);
+
     }
 
     @Test
     public void testDriveForwardWithinDeadband() {
-        double leftspeed = 0.01;
-        double rightspeed = 0.01;
-        drive.tankDrive(leftspeed, rightspeed, false);
-        verify(mocktalonleft1).set(applyDeadband(leftspeed));
-        verify(mocktalonleft2).set(applyDeadband(leftspeed));
-        verify(mocktalonright1).set(-applyDeadband(rightspeed));
-        verify(mocktalonright2).set(-applyDeadband(rightspeed));
+        testDriveTemplate(0.01, 0.01);
+
     }
 }
