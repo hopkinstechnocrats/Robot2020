@@ -42,15 +42,24 @@ public class TankDriveTest {
         }
     }
 
-    @Test
-    public void testDriveFowardFull() {
-        double leftspeed = 1;
-        double rightspeed = 1;
+    private void testDriveTemplate(double leftspeed, double rightspeed) {
         drive.tankDrive(leftspeed, rightspeed, false);
         verify(mocktalonleft1).set(applyDeadband(leftspeed));
         verify(mocktalonleft2).set(applyDeadband(leftspeed));
         verify(mocktalonright1).set(-applyDeadband(rightspeed));
         verify(mocktalonright2).set(-applyDeadband(rightspeed));
+    }
+
+    @Test
+    public void testDriveFowardFull() {
+        // double leftspeed = 1;
+        // double rightspeed = 1;
+        // drive.tankDrive(leftspeed, rightspeed, false);
+        // verify(mocktalonleft1).set(applyDeadband(leftspeed));
+        // verify(mocktalonleft2).set(applyDeadband(leftspeed));
+        // verify(mocktalonright1).set(-applyDeadband(rightspeed));
+        // verify(mocktalonright2).set(-applyDeadband(rightspeed));
+        testDriveTemplate(1,1);
     }
 
     @Test
