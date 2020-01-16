@@ -6,9 +6,23 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.motionprofiling;
+import jaci.pathfinder.Trajectory;
+import com.ctre.phoenix.motion.BufferedTrajectoryPointStream;
 
 /**
  * Add your docs here.
  */
 public class MotionProfile {
+
+    public MotionProfile(String csvpath) {
+
+    }
+
+    public MotionProfile(Trajectory traj) {
+
+    }
+
+    public BufferedTrajectoryPointStream getBufferedTrajectoryPointStream() {
+
+    }
 }
