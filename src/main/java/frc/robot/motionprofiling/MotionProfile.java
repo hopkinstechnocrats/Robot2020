@@ -12,8 +12,6 @@ import jaci.pathfinder.Trajectory.Segment;
 import com.ctre.phoenix.motion.BufferedTrajectoryPointStream;
 import com.ctre.phoenix.motion.TrajectoryPoint;
 
-import org.graalvm.compiler.nodes.calc.PointerEqualsNode.PointerEqualsOp;
-
 import java.io.File;
 import java.io.IOException;
 
