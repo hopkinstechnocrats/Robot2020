@@ -8,17 +8,13 @@
 package frc.robot.subsystems;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import frc.robot.Components;
 import frc.robot.commands.JoystickDrive;
 import frc.robot.components.*;
-import jdk.nashorn.api.tree.TemplateLiteralTree;
-import frc.robot.Robot;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.

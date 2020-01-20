@@ -1,5 +1,4 @@
 package frc.robot.components;
-import com.ctre.phoenix.motion.BufferedTrajectoryPointStream;
 import com.ctre.phoenix.motion.MotionProfileStatus;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;

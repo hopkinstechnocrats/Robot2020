@@ -8,7 +8,6 @@
 package frc.robot.motionprofiling;
 
 import jaci.pathfinder.Trajectory;
-import jaci.pathfinder.Trajectory.Segment;
 
 import com.ctre.phoenix.motion.BufferedTrajectoryPointStream;
 import com.ctre.phoenix.motion.TrajectoryPoint;

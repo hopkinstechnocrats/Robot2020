@@ -9,7 +9,6 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.subsystems.TankDrive;
 import frc.robot.Robot;
 
