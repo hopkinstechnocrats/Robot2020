@@ -31,7 +31,7 @@ public class TankDrive extends Subsystem {
   Talon rightTalon2;
   DifferentialDrive diffdrive;
   XboxController controller;
-  public double speed = 1;
+  public double speed;
   public boolean flipped = false;
   
   public TankDrive(Talon leftTalon1, Talon leftTalon2, Talon rightTalon1, Talon rightTalon2, XboxController controller) {
@@ -43,6 +43,7 @@ public class TankDrive extends Subsystem {
     this.rightTalon1 = rightTalon1;
     this.rightTalon2 = rightTalon2;
     this.controller = controller;
+    this.speed = 1;
   }
 
   public void tankDrive(double left, double right, boolean isSquared){

@@ -30,10 +30,10 @@ public class OI {
 
     controller = new XboxController(0);
 
-    up.whenPressed(new SetDriveSpeed(1.0));
-    left.whenPressed(new SetDriveSpeed(.75));
-    down.whenPressed(new SetDriveSpeed(.5));
-    right.whenPressed(new SetDriveSpeed(.25));
+    // up.whenPressed(new SetDriveSpeed(1.0));
+    // left.whenPressed(new SetDriveSpeed(.75));
+    // down.whenPressed(new SetDriveSpeed(.5));
+    // right.whenPressed(new SetDriveSpeed(.25));
 
   }
 

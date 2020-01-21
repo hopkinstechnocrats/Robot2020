@@ -24,7 +24,7 @@ import frc.robot.subsystems.TankDrive;
 public class Robot extends TimedRobot {
   public static Components components = new Components();
   public static OI oi = new OI();
-  public static TankDrive tankDrive = new TankDrive((Talon)components.getComponent("leftTalon1"), (Talon)components.getComponent("leftTalon2"), (Talon)components.getComponent("rightTalon1"), (Talon)components.getComponent("rightTalon2"), oi.getXboxController());
+  public static TankDrive tankDrive = new TankDrive((Talon)components.getComponent("LeftTalon1"), (Talon)components.getComponent("LeftTalon2"), (Talon)components.getComponent("RightTalon1"), (Talon)components.getComponent("RightTalon2"), oi.getXboxController());
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 

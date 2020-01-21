@@ -44,6 +44,8 @@ public class JoystickDrive extends Command {
       }else{
         drivetrain.tankDrive(Robot.oi.controller.getRawAxis(1), Robot.oi.controller.getRawAxis(4), isSquared);
       }
+    }else{
+      drivetrain.tankDrive(0,0, false);
     }
   }
 
