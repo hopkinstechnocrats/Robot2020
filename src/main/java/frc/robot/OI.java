@@ -7,8 +7,11 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.ButtonMonitor;
+
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.POVButton;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.*;
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -25,10 +28,13 @@ public class OI {
   POVButton downRight = new POVButton(controller, 225);
   POVButton right = new POVButton(controller, 270);
   POVButton upRight = new POVButton(controller, 315);
+ JoystickButton aButton;
 
-  public OI(){
+  public OI(XboxController controller){
 
-    controller = new XboxController(0);
+    this.controller = controller;
+    aButton = new JoystickButton(controller, 1);
+    aButton.whenPressed(new DriveMotionProfile("testpath", Robot.tankDrive));
 
     // up.whenPressed(new SetDriveSpeed(1.0));
     // left.whenPressed(new SetDriveSpeed(.75));

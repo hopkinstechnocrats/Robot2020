@@ -8,6 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -23,8 +24,13 @@ import frc.robot.subsystems.TankDrive;
  */
 public class Robot extends TimedRobot {
   public static Components components = new Components();
-  public static OI oi = new OI();
-  public static TankDrive tankDrive = new TankDrive((Talon)components.getComponent("LeftTalon1"), (Talon)components.getComponent("LeftTalon2"), (Talon)components.getComponent("RightTalon1"), (Talon)components.getComponent("RightTalon2"), oi.getXboxController());
+  private static XboxController controller = new XboxController(0);
+  public static TankDrive tankDrive = new TankDrive((Talon)components.getComponent("LeftTalon1"), 
+                                                    (Talon)components.getComponent("LeftTalon2"), 
+                                                    (Talon)components.getComponent("RightTalon1"), 
+                                                    (Talon)components.getComponent("RightTalon2"),
+                                                    controller);
+  public static OI oi = new OI(controller);
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 

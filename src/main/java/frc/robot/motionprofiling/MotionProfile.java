@@ -24,7 +24,13 @@ public class MotionProfile {
     public Trajectory trajectory;
 
     public MotionProfile(String csvpath) throws IOException{
-        File myFile = new File("myfile.traj");
+        // @TODO Fix profile path location
+        // This won't actually work because the code runs on the ROBOT, which does not have a C: drive.
+        // The path files need to be bundled in the code sent to the robot somehow.
+        File pathweaverFolder = new File("/C/Users/technocrats/Desktop/Robot2020/PathWeaver/output");
+        if (!pathweaverFolder.isDirectory()) throw new IOException("Folder should exist");
+
+        File myFile = new File(pathweaverFolder, csvpath);
         trajectory = Pathfinder.readFromCSV(myFile);
     }
 
