@@ -1,4 +1,6 @@
 package frc.robot.components;
+
+import com.ctre.phoenix.ErrorCode;
 import com.ctre.phoenix.motion.MotionProfileStatus;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -68,7 +70,7 @@ public class Talon extends Component implements SpeedController{
     }
     public void startMotionProfile(String name){
         MotionProfile mp =  motionProfiles.get(name);
-        hardwareTalon.startMotionProfile(mp.getBufferedTrajectoryPointStream(), 5, ControlMode.MotionProfile);
+        ErrorCode error = hardwareTalon.startMotionProfile(mp.getBufferedTrajectoryPointStream(), 20, ControlMode.MotionProfile);
     }
     public void cancelMotionProfile(){
         this.set(0);

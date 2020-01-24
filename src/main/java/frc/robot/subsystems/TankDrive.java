@@ -8,13 +8,16 @@
 package frc.robot.subsystems;
 
 import java.io.IOException;
+import java.util.HashMap;
 
+import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.commands.JoystickDrive;
 import frc.robot.components.*;
+import com.ctre.phoenix.motion.MotionProfileStatus;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
@@ -80,7 +83,7 @@ public class TankDrive extends Subsystem {
     rightTalon2.startMotionProfile(name);
   }
 
-  public boolean isMotionProfileFinished(){
+  public boolean isMotionProfileFinished() {
     boolean finished = false;
     finished = finished || leftTalon1.isMotionProfileFinished();
     finished = finished || leftTalon2.isMotionProfileFinished();
@@ -90,6 +93,15 @@ public class TankDrive extends Subsystem {
       cancelMotionProfile();
     }
     return finished;
+  }
+
+  public HashMap getMotionProfileStatuses() {
+    HashMap statuses = new HashMap<String, MotionProfileStatus>();
+    statuses.put("leftTalon1", leftTalon1.getMotionProfileStatus());
+    statuses.put("leftTalon2", leftTalon2.getMotionProfileStatus());
+    statuses.put("rightTalon1", rightTalon1.getMotionProfileStatus());
+    statuses.put("rightTalon2", rightTalon2.getMotionProfileStatus());
+    return statuses;
   }
 
   public void cancelMotionProfile(){

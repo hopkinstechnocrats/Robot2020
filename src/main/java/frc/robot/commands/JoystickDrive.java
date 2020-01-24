@@ -38,21 +38,22 @@ public class JoystickDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Math.abs(Robot.oi.controller.getRawAxis(1)) > deadband || Math.abs(Robot.oi.controller.getRawAxis(4)) > deadband){
+    if(Math.abs(Robot.oi.controller.getRawAxis(1)) > deadband || Math.abs(Robot.oi.controller.getRawAxis(5)) > deadband){
       if(isFlipped){
-        drivetrain.tankDrive(Robot.oi.controller.getRawAxis(1), -Robot.oi.controller.getRawAxis(4), isSquared);
+        drivetrain.tankDrive(Robot.oi.controller.getRawAxis(1), -Robot.oi.controller.getRawAxis(5), isSquared);
       }else{
-        drivetrain.tankDrive(Robot.oi.controller.getRawAxis(1), Robot.oi.controller.getRawAxis(4), isSquared);
+        drivetrain.tankDrive(Robot.oi.controller.getRawAxis(1), Robot.oi.controller.getRawAxis(5), isSquared);
       }
     }else{
       drivetrain.tankDrive(0,0, false);
     }
+    System.out.println("execute() on JoystickDrive");
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true

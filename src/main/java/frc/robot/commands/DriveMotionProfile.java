@@ -9,7 +9,9 @@ package frc.robot.commands;
 
 import java.io.IOException;
 
+import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.TankDrive;
 
 public class DriveMotionProfile extends Command {
@@ -22,6 +24,7 @@ public class DriveMotionProfile extends Command {
     done = false;
     this.name = name;
     this.drivetrain = drivetrain;
+    requires(drivetrain);
   }
 
   // Called just before this Command runs the first time
@@ -32,22 +35,24 @@ public class DriveMotionProfile extends Command {
     } catch (IOException e) {
       done = true;
     }
+    drivetrain.startMotionProfile(name);
   }
 
   @Override
   protected void execute() {
+    System.out.println("execute() on DriveMotionProfile");
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
     return drivetrain.isMotionProfileFinished();
-  
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    System.out.println("end() on DriveMotionProfile");
     drivetrain.cancelMotionProfile();
   }
 
