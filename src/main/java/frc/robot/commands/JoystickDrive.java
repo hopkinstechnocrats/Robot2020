@@ -33,6 +33,7 @@ public class JoystickDrive extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+   drivetrain.clearOldMotionProfiles();
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -40,14 +41,13 @@ public class JoystickDrive extends Command {
   protected void execute() {
     if(Math.abs(Robot.oi.controller.getRawAxis(1)) > deadband || Math.abs(Robot.oi.controller.getRawAxis(5)) > deadband){
       if(isFlipped){
-        drivetrain.tankDrive(Robot.oi.controller.getRawAxis(1), -Robot.oi.controller.getRawAxis(5), isSquared);
+        drivetrain.tankDrive(Robot.oi.controller.getRawAxis(5), -Robot.oi.controller.getRawAxis(1), isSquared);
       }else{
-        drivetrain.tankDrive(Robot.oi.controller.getRawAxis(1), Robot.oi.controller.getRawAxis(5), isSquared);
+        drivetrain.tankDrive(Robot.oi.controller.getRawAxis(5), Robot.oi.controller.getRawAxis(1), isSquared);
       }
     }else{
       drivetrain.tankDrive(0,0, false);
     }
-    System.out.println("execute() on JoystickDrive");
   }
 
   // Make this return true when this Command no longer needs to run execute()

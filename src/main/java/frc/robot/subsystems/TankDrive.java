@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.commands.JoystickDrive;
 import frc.robot.components.*;
 import com.ctre.phoenix.motion.MotionProfileStatus;
+import com.ctre.phoenix.motorcontrol.IMotorController;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
@@ -28,29 +29,31 @@ public class TankDrive extends Subsystem {
   // here. Call these from Commands.
   SpeedControllerGroup left;
   SpeedControllerGroup right;
-  Talon leftTalon1;
-  Talon leftTalon2;
-  Talon rightTalon1;
-  Talon rightTalon2;
-  DifferentialDrive diffdrive;
+  public Talon leftTalon1;
+  public Talon leftTalon2;
+  public Talon rightTalon1;
+  public Talon rightTalon2;
+  public DifferentialDrive diffDrive;
   XboxController controller;
   public double speed;
   public boolean flipped = false;
   
   public TankDrive(Talon leftTalon1, Talon leftTalon2, Talon rightTalon1, Talon rightTalon2, XboxController controller) {
-    left = new SpeedControllerGroup(leftTalon1, leftTalon2);
-    right = new SpeedControllerGroup(rightTalon1, rightTalon2);
-    diffdrive = new DifferentialDrive(left, right);
+    left = new SpeedControllerGroup(leftTalon1);
+    right = new SpeedControllerGroup(rightTalon1);
+    diffDrive = new DifferentialDrive(left, right);
     this.leftTalon1 = leftTalon1;
     this.leftTalon2 = leftTalon2;
+    this.leftTalon2.follow(leftTalon1);
     this.rightTalon1 = rightTalon1;
     this.rightTalon2 = rightTalon2;
+    this.rightTalon2.follow(rightTalon1);
     this.controller = controller;
-    this.speed = 1;
+    this.speed = 0.5;
   }
 
   public void tankDrive(double left, double right, boolean isSquared){
-    diffdrive.tankDrive(speed*left, speed*right, isSquared);
+    diffDrive.tankDrive(speed*left, speed*right, isSquared);
   }
 
   @Override
@@ -70,25 +73,20 @@ public class TankDrive extends Subsystem {
   public boolean loadMotionProfile(String name) throws IOException{
     boolean success = true;
     success = success && leftTalon1.loadMotionProfile(name, (name+".left.pf1.csv"));
-    success = success && leftTalon2.loadMotionProfile(name, (name+".left.pf1.csv"));
     success = success && rightTalon1.loadMotionProfile(name, (name+".right.pf1.csv"));
-    success = success && rightTalon2.loadMotionProfile(name, (name+".right.pf1.csv"));
     return success;
   }
 
   public void startMotionProfile(String name) {
     leftTalon1.startMotionProfile(name);
-    leftTalon2.startMotionProfile(name);
     rightTalon1.startMotionProfile(name);
-    rightTalon2.startMotionProfile(name);
+    ]\[]
   }
 
   public boolean isMotionProfileFinished() {
     boolean finished = false;
     finished = finished || leftTalon1.isMotionProfileFinished();
-    finished = finished || leftTalon2.isMotionProfileFinished();
     finished = finished || rightTalon1.isMotionProfileFinished();
-    finished = finished || rightTalon2.isMotionProfileFinished();
     if (finished) {
       cancelMotionProfile();
     }
@@ -97,18 +95,19 @@ public class TankDrive extends Subsystem {
 
   public HashMap getMotionProfileStatuses() {
     HashMap statuses = new HashMap<String, MotionProfileStatus>();
-    statuses.put("leftTalon1", leftTalon1.getMotionProfileStatus());
-    statuses.put("leftTalon2", leftTalon2.getMotionProfileStatus());
-    statuses.put("rightTalon1", rightTalon1.getMotionProfileStatus());
-    statuses.put("rightTalon2", rightTalon2.getMotionProfileStatus());
+    statuses.put("Left", leftTalon1.getMotionProfileStatus());
+    statuses.put("Right", rightTalon1.getMotionProfileStatus());
     return statuses;
   }
 
-  public void cancelMotionProfile(){
+  public void cancelMotionProfile() {
     leftTalon1.cancelMotionProfile();
-    leftTalon2.cancelMotionProfile();
     rightTalon1.cancelMotionProfile();
-    rightTalon2.cancelMotionProfile();
-    
   }
+
+  public void clearOldMotionProfiles() {
+    leftTalon1.clearOldMotionProfiles();
+    rightTalon1.clearOldMotionProfiles();
+  }
+
 }

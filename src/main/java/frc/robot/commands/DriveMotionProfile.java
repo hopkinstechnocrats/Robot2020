@@ -8,17 +8,21 @@
 package frc.robot.commands;
 
 import java.io.IOException;
+import java.util.HashMap;
 
+import edu.wpi.first.wpilibj.MotorSafety;
 import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.TankDrive;
+import com.ctre.phoenix.motion.MotionProfileStatus;
 
 public class DriveMotionProfile extends Command {
 
   String name;
   TankDrive drivetrain;
   Boolean done;
+  MotorSafety motorSafetyInst;
 
   public DriveMotionProfile(String name, TankDrive drivetrain){
     done = false;
@@ -30,6 +34,7 @@ public class DriveMotionProfile extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize(){
+    drivetrain.clearOldMotionProfiles();
     try{
       drivetrain.loadMotionProfile(name);
     } catch (IOException e) {
@@ -40,7 +45,19 @@ public class DriveMotionProfile extends Command {
 
   @Override
   protected void execute() {
-    System.out.println("execute() on DriveMotionProfile");
+    drivetrain.leftTalon1.hardwareTalon.feed();
+    drivetrain.rightTalon1.hardwareTalon.feed();
+    drivetrain.leftTalon2.hardwareTalon.feed();
+    drivetrain.rightTalon2.hardwareTalon.feed();
+    drivetrain.diffDrive.feed();
+    HashMap<String, MotionProfileStatus> statuses = drivetrain.getMotionProfileStatuses();
+    
+    SmartDashboard.putNumber("LeftTopBufferCnt", statuses.get("Left").topBufferCnt);
+    SmartDashboard.putNumber("LeftTopBufferRem", statuses.get("Left").topBufferRem);
+    SmartDashboard.putNumber("RightTopBufferCnt", statuses.get("Right").topBufferCnt);
+    SmartDashboard.putNumber("RightTopBufferRem", statuses.get("Right").topBufferRem);
+    SmartDashboard.putBoolean("RightHasUnderrun", statuses.get("Right").hasUnderrun);
+    SmartDashboard.putBoolean("LeftHasUnderrun", statuses.get("Left").hasUnderrun);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -54,6 +71,7 @@ public class DriveMotionProfile extends Command {
   protected void end() {
     System.out.println("end() on DriveMotionProfile");
     drivetrain.cancelMotionProfile();
+    drivetrain.clearOldMotionProfiles();
   }
 
   // Called when another command which requires one or more of the same

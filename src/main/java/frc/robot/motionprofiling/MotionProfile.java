@@ -13,6 +13,9 @@ import com.ctre.phoenix.motion.BufferedTrajectoryPointStream;
 import com.ctre.phoenix.motion.TrajectoryPoint;
 
 import edu.wpi.first.wpilibj.Filesystem;
+import edu.wpi.first.wpilibj.Sendable;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Constants;
 
 import java.io.File;
 import java.io.IOException;
@@ -41,16 +44,21 @@ public class MotionProfile {
     }
 
     public BufferedTrajectoryPointStream getBufferedTrajectoryPointStream() {
+        TrajectoryPoint point;
         TrajectoryPoint[] points = new TrajectoryPoint[trajectory.length()];
         for (int i = 0; i < trajectory.length(); i++) {
             Trajectory.Segment seg = trajectory.get(i);
-            TrajectoryPoint point = new TrajectoryPoint();
-            point.position = seg.position;
-            point.velocity = seg.velocity;
+            point = new TrajectoryPoint();
+            point.position = seg.position*Constants.ENCODER_TICKS_PER_INCH_DRIVETRAIN;
+            point.velocity = seg.velocity*Constants.ENCODER_TICKS_PER_INCH_DRIVETRAIN/10;
             points[i] = point;
         }
         BufferedTrajectoryPointStream btps = new BufferedTrajectoryPointStream();
-        btps.Write(points);
+        System.out.println(points.toString());
+        System.out.println("Trajectory Point Buffer Length: "+trajectory.length());
+        for (int i = 0; i < trajectory.length(); i++) {
+            btps.Write(points[i]);
+        }
         return btps;
     }
 }
