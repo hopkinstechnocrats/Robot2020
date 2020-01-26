@@ -51,6 +51,9 @@ public class MotionProfile {
             point = new TrajectoryPoint();
             point.position = seg.position*Constants.ENCODER_TICKS_PER_INCH_DRIVETRAIN;
             point.velocity = seg.velocity*Constants.ENCODER_TICKS_PER_INCH_DRIVETRAIN/10;
+            if (i == (trajectory.length()-1)) {
+                point.isLastPoint = true;
+            }
             points[i] = point;
         }
         BufferedTrajectoryPointStream btps = new BufferedTrajectoryPointStream();
