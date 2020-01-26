@@ -12,4 +12,6 @@ package frc.robot;
  */
 public class Constants {
     public static final int ENCODER_TICKS_PER_INCH_DRIVETRAIN = 1099;
+    public static final double MOTION_PROFILE_KP = 1;
+    public static final double MOTION_PROFILE_KF = 0.04;
 }
