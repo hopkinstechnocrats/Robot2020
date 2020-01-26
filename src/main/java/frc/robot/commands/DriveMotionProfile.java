@@ -78,5 +78,7 @@ public class DriveMotionProfile extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    drivetrain.cancelMotionProfile();
+    drivetrain.clearOldMotionProfiles();
   }
 }
