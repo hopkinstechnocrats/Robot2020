@@ -80,7 +80,6 @@ public class TankDrive extends Subsystem {
   public void startMotionProfile(String name) {
     leftTalon1.startMotionProfile(name);
     rightTalon1.startMotionProfile(name);
-    ]\[]
   }
 
   public boolean isMotionProfileFinished() {
