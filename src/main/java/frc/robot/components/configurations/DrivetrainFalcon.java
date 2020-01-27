@@ -14,7 +14,7 @@ import frc.robot.Constants;
 /**
  * Add your docs here.
  */
-public class DrivetrainMotionProfileMode {
+public class DrivetrainFalcon {
 
     public static TalonSRXConfiguration getConfiguration() {
         TalonSRXConfiguration conf = new TalonSRXConfiguration();
