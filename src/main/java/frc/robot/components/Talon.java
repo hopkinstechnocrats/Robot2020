@@ -7,6 +7,8 @@ import com.ctre.phoenix.motorcontrol.FollowerType;
 import com.ctre.phoenix.motorcontrol.IMotorController;
 import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
+import frc.robot.components.configurations.DrivetrainMotionProfileMode;
 import frc.robot.logger.Status;
 import frc.robot.logger.StatusType;
 import frc.robot.motionprofiling.MotionProfile;
@@ -98,6 +100,10 @@ public class Talon extends Component implements SpeedController{
     public void clearOldMotionProfiles() {
         hardwareTalon.clearMotionProfileHasUnderrun();
         hardwareTalon.clearMotionProfileTrajectories();
+    }
+
+    public void configureMotionProfileMode() {
+        hardwareTalon.configAllSettings(DrivetrainMotionProfileMode.getConfiguration());
     }
 
 }

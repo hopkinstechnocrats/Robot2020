@@ -50,6 +50,8 @@ public class TankDrive extends Subsystem {
     this.rightTalon2.follow(rightTalon1);
     this.controller = controller;
     this.speed = 0.5;
+    this.leftTalon1.configureMotionProfileMode();
+    this.rightTalon1.configureMotionProfileMode();
   }
 
   public void tankDrive(double left, double right, boolean isSquared){
