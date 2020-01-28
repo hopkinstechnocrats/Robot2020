@@ -35,6 +35,7 @@ public class DriveMotionProfile extends Command {
   @Override
   protected void initialize(){
     drivetrain.clearOldMotionProfiles();
+    drivetrain.zeroEncoders();
     try{
       drivetrain.loadMotionProfile(name);
     } catch (IOException e) {

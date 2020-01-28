@@ -111,4 +111,9 @@ public class TankDrive extends Subsystem {
     rightTalon1.clearOldMotionProfiles();
   }
 
+  public void zeroEncoders() {
+    leftTalon1.zeroEncoder();
+    rightTalon1.zeroEncoder();
+  }
+
 }

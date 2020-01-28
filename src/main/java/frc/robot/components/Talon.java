@@ -106,4 +106,8 @@ public class Talon extends Component implements SpeedController{
         hardwareTalon.configAllSettings(DrivetrainFalcon.getConfiguration());
     }
 
+    public void zeroEncoder() {
+        hardwareTalon.setSelectedSensorPosition(0);
+    }
+
 }
