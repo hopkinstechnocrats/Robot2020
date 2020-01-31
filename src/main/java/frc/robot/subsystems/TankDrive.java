@@ -49,7 +49,7 @@ public class TankDrive extends Subsystem {
     this.rightTalon2 = rightTalon2;
     this.rightTalon2.follow(rightTalon1);
     this.controller = controller;
-    this.speed = 0.5;
+    this.speed = .3;
     this.leftTalon1.configureDrivetrainFalcon();
     this.rightTalon1.configureDrivetrainFalcon();
   }
@@ -74,7 +74,7 @@ public class TankDrive extends Subsystem {
 
   public boolean loadMotionProfile(String name) throws IOException{
     boolean success = true;
-    success = success && leftTalon1.loadMotionProfile(name, (name+".left.pf1.csv"));
+    success = success && leftTalon1.loadMotionProfile(name, (name+".left.pf1.csv"), true);
     success = success && rightTalon1.loadMotionProfile(name, (name+".right.pf1.csv"));
     return success;
   }

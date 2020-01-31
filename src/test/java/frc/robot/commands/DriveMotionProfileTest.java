@@ -9,7 +9,7 @@ package frc.robot.commands;
 
 import frc.robot.subsystems.TankDrive;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+// import static org.mockito.Mockito.*;
 import edu.wpi.first.wpilibj.*;
 import org.junit.*;
 import frc.robot.Components;
@@ -26,8 +26,8 @@ public class DriveMotionProfileTest {
     DriveMotionProfile command;
 
     public void setup() {
-        subsystem = mock(TankDrive.class);
-        command = new DriveMotionProfile();
+        // subsystem = mock(TankDrive.class);
+        // command = new DriveMotionProfile();
     }; 
 
 }

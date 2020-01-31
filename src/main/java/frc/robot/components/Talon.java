@@ -6,6 +6,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FollowerType;
 import com.ctre.phoenix.motorcontrol.IMotorController;
 import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import frc.robot.components.configurations.DrivetrainFalcon;
@@ -19,11 +20,11 @@ import java.util.*;
 
 public class Talon extends Component implements SpeedController{
 
-    public WPI_TalonSRX hardwareTalon;
+    public WPI_TalonFX hardwareTalon;
     HashMap<String, MotionProfile> motionProfiles = new HashMap<String, MotionProfile>();
 
     public Talon(int id){
-        hardwareTalon = new WPI_TalonSRX(id);
+        hardwareTalon = new WPI_TalonFX(id);
         hardwareTalon.configFactoryDefault();
     }
 
@@ -64,7 +65,11 @@ public class Talon extends Component implements SpeedController{
     }
 
     public boolean loadMotionProfile(String name, String ProfilePath) throws IOException{
-        MotionProfile mp = new MotionProfile(ProfilePath);
+        return loadMotionProfile(name, ProfilePath, false);
+    }
+
+    public boolean loadMotionProfile(String name, String ProfilePath, boolean isInverted) throws IOException{
+        MotionProfile mp = new MotionProfile(ProfilePath, isInverted);
         loadMotionProfile(name, mp);
         return true;
     }

@@ -6,8 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.components.configurations;
-
-import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
+import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 
 import frc.robot.Constants;
 
@@ -16,8 +15,8 @@ import frc.robot.Constants;
  */
 public class DrivetrainFalcon {
 
-    public static TalonSRXConfiguration getConfiguration() {
-        TalonSRXConfiguration conf = new TalonSRXConfiguration();
+    public static TalonFXConfiguration getConfiguration() {
+        TalonFXConfiguration conf = new TalonFXConfiguration();
         conf.slot0.allowableClosedloopError = Constants.DRIVETRAIN_MOTION_PROFILE_ALLOWABLE_ERROR;
         conf.slot0.kP = Constants.DRIVETRAIN_MOTION_PROFILE_KP;
         conf.slot0.kF = Constants.DRIVETRAIN_MOTION_PROFILE_KF;

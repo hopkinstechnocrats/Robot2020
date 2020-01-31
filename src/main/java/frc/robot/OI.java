@@ -28,13 +28,30 @@ public class OI {
   POVButton downRight = new POVButton(controller, 225);
   POVButton right = new POVButton(controller, 270);
   POVButton upRight = new POVButton(controller, 315);
- JoystickButton aButton;
+  JoystickButton aButton;
+  JoystickButton bButton;
+  JoystickButton xButton;
+  JoystickButton yButton;
+  JoystickButton leftBumper;
+  JoystickButton rightBumper;
 
   public OI(XboxController controller){
 
     this.controller = controller;
     aButton = new JoystickButton(controller, 1);
+    bButton = new JoystickButton(controller, 2);
+    xButton = new JoystickButton(controller, 3);
+    yButton = new JoystickButton(controller, 4);
+    leftBumper = new JoystickButton(controller, 5);
+    rightBumper = new JoystickButton(controller, 6);
     aButton.whenPressed(new DriveMotionProfile("testpath", Robot.tankDrive));
+    leftBumper.whileHeld(new IntakeBall(Robot.intake));
+    rightBumper.whileHeld(new LauncherWheels(Robot.launcher, -.65));
+    bButton.whileHeld(new LauncherWheels(Robot.launcher, -.5));
+    xButton.whileHeld(new LauncherWheels(Robot.launcher, -.55));
+    yButton.whileHeld(new LauncherWheels(Robot.launcher, -.6));
+
+
 
     // up.whenPressed(new SetDriveSpeed(1.0));
     // left.whenPressed(new SetDriveSpeed(.75));

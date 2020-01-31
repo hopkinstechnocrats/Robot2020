@@ -8,7 +8,7 @@
 package frc.robot.motionprofiling;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+// import static org.mockito.Mockito.*;
 import edu.wpi.first.wpilibj.*;
 import org.junit.*;
 import frc.robot.Components;
@@ -27,8 +27,8 @@ public class MotionProfileTest {
 
     @Before
     public void setup() {
-        traj = new Trajectory();
-        MotionProfile mp = new MotionProfile();
+        // traj = new Trajectory();
+        // MotionProfile mp = new MotionProfile();
 
     }
 }

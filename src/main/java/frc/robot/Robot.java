@@ -13,7 +13,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.components.Talon;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Launcher;
 import frc.robot.subsystems.TankDrive;
+import edu.wpi.first.wpilibj.buttons.POVButton;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -30,6 +33,8 @@ public class Robot extends TimedRobot {
                                                     (Talon)components.getComponent("RightTalon1"), 
                                                     (Talon)components.getComponent("RightTalon2"),
                                                     controller);
+  public static Intake intake = new Intake((Talon)components.getComponent("IntakeMotor"), controller);
+  public static Launcher launcher = new Launcher((Talon)components.getComponent("LauncherLeft"), (Talon)components.getComponent("LauncherRight"), controller);
   public static OI oi = new OI(controller);
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();

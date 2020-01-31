@@ -27,8 +27,9 @@ import jaci.pathfinder.Pathfinder;
 public class MotionProfile {
 
     public Trajectory trajectory;
+    boolean isInverted;
 
-    public MotionProfile(String csvpath) throws IOException{
+    public MotionProfile(String csvpath, boolean isInverted) throws IOException{
         // @TODO Fix profile path location
         // This won't actually work because the code runs on the ROBOT, which does not have a C: drive.
         // The path files need to be bundled in the code sent to the robot somehow.
@@ -37,6 +38,16 @@ public class MotionProfile {
 
         File myFile = new File(pathweaverFolder, csvpath);
         trajectory = Pathfinder.readFromCSV(myFile);
+        this.isInverted = isInverted;
+    }
+
+    public MotionProfile(String csvpath) throws IOException{
+        File pathweaverFolder = new File(Filesystem.getDeployDirectory() + "/PathWeaver/output/");
+        //if (!pathweaverFolder.isDirectory()) throw new IOException("Folder should exist");
+
+        File myFile = new File(pathweaverFolder, csvpath);
+        trajectory = Pathfinder.readFromCSV(myFile);
+        this.isInverted = false;
     }
 
     public MotionProfile(Trajectory trajectory) {
@@ -51,6 +62,12 @@ public class MotionProfile {
             point = new TrajectoryPoint();
             point.position = seg.position*Constants.ENCODER_TICKS_PER_INCH_DRIVETRAIN;
             point.velocity = seg.velocity*Constants.ENCODER_TICKS_PER_INCH_DRIVETRAIN/10;
+
+            if (this.isInverted) {
+                point.position *= -1;
+                point.velocity *= -1;
+            }
+
             if (i == (trajectory.length()-1)) {
                 point.isLastPoint = true;
             }

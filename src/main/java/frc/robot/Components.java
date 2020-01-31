@@ -15,7 +15,11 @@ public class Components {
         addComponent("LeftTalon2", new Talon(2));
         addComponent("RightTalon1", new Talon(3));
         addComponent("RightTalon2", new Talon(4));
+        addComponent("LauncherLeft", new Talon(5));
+        addComponent("LauncherRight", new Talon(6));
+        addComponent("IntakeMotor", new Talon(7));
     }
+    
 
     private void addComponent(String name, Component component){
         components.put(name, component);
