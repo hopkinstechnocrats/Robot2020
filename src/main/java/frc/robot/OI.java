@@ -20,14 +20,15 @@ import frc.robot.commands.*;
 public class OI {
 
   public XboxController controller;
-  POVButton up = new POVButton(controller, 0);
-  POVButton upLeft = new POVButton(controller, 45);
-  POVButton left = new POVButton(controller, 90);
-  POVButton downLeft = new POVButton(controller, 135);
-  POVButton down = new POVButton(controller, 180);
-  POVButton downRight = new POVButton(controller, 225);
-  POVButton right = new POVButton(controller, 270);
-  POVButton upRight = new POVButton(controller, 315);
+  POVButton up;
+  POVButton upLeft;
+  POVButton left;
+  POVButton downLeft;
+  POVButton down;
+  POVButton downRight;
+  POVButton right;
+  POVButton upRight;
+ 
   JoystickButton aButton;
   JoystickButton bButton;
   JoystickButton xButton;
@@ -38,6 +39,14 @@ public class OI {
   public OI(XboxController controller){
 
     this.controller = controller;
+     up = new POVButton(controller, 0);
+      upLeft = new POVButton(controller, 45);
+      left = new POVButton(controller, 90);
+      downLeft = new POVButton(controller, 135);
+      down = new POVButton(controller, 180);
+      downRight = new POVButton(controller, 225);
+      right = new POVButton(controller, 270);
+      upRight = new POVButton(controller, 315);
     aButton = new JoystickButton(controller, 1);
     bButton = new JoystickButton(controller, 2);
     xButton = new JoystickButton(controller, 3);
@@ -46,10 +55,14 @@ public class OI {
     rightBumper = new JoystickButton(controller, 6);
     aButton.whenPressed(new DriveMotionProfile("testpath", Robot.tankDrive));
     leftBumper.whileHeld(new IntakeBall(Robot.intake));
-    rightBumper.whileHeld(new LauncherWheels(Robot.launcher, -.65));
-    bButton.whileHeld(new LauncherWheels(Robot.launcher, -.5));
-    xButton.whileHeld(new LauncherWheels(Robot.launcher, -.55));
-    yButton.whileHeld(new LauncherWheels(Robot.launcher, -.6));
+    rightBumper.whileHeld(new LauncherWheels(Robot.launcher, Constants.LAUNCHER_WHEELS_ENCODER_SPEED));
+    bButton.whileHeld(new LauncherWheels(Robot.launcher, .5));
+    xButton.whileHeld(new LauncherWheels(Robot.launcher, .475));
+    yButton.whileHeld(new LauncherWheels(Robot.launcher, .45));
+    up.whenPressed(new SetDriveSpeed(Robot.tankDrive, .8));
+    right.whenPressed(new SetDriveSpeed(Robot.tankDrive, .65));
+    down.whenPressed(new SetDriveSpeed(Robot.tankDrive, .5));
+    left.whenPressed(new SetDriveSpeed(Robot.tankDrive, .35));
 
 
 

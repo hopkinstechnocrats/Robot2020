@@ -10,6 +10,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import frc.robot.components.configurations.DrivetrainFalcon;
+import frc.robot.components.configurations.LauncherFalcon;
 import frc.robot.logger.Status;
 import frc.robot.logger.StatusType;
 import frc.robot.motionprofiling.MotionProfile;
@@ -111,8 +112,16 @@ public class Talon extends Component implements SpeedController{
         hardwareTalon.configAllSettings(DrivetrainFalcon.getConfiguration());
     }
 
+    public void configureLauncherFalcon() {
+        hardwareTalon.configAllSettings(LauncherFalcon.getConfiguration());
+    }
+
     public void zeroEncoder() {
         hardwareTalon.setSelectedSensorPosition(0);
+    }
+
+    public void setClosedLoopVelocity(double speed) {
+        hardwareTalon.set(ControlMode.Velocity, speed);
     }
 
 }

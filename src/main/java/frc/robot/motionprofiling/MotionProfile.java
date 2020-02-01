@@ -62,7 +62,7 @@ public class MotionProfile {
             point = new TrajectoryPoint();
             point.position = seg.position*Constants.ENCODER_TICKS_PER_INCH_DRIVETRAIN;
             point.velocity = seg.velocity*Constants.ENCODER_TICKS_PER_INCH_DRIVETRAIN/10;
-
+            point.timeDur = (int)(seg.dt*1000);
             if (this.isInverted) {
                 point.position *= -1;
                 point.velocity *= -1;

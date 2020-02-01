@@ -7,12 +7,15 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.commands.LauncherWheels;
+import frc.robot.commands.StopLauncher;
 import frc.robot.components.*;
 
 
@@ -32,19 +35,24 @@ public class Launcher extends Subsystem {
     this.controller = controller;
     this.left = left;
     this.right = right;
+    right.configureLauncherFalcon();
     left.follow(right);
     left.setInverted(true);
   }
 
   public void spinWheels(double speed) {
-    right.set(speed);
+    right.setClosedLoopVelocity(speed);
+  }
+
+  public void setZero() {
+    right.set(0);
   }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand();
-    setDefaultCommand(new LauncherWheels(Robot.launcher, 0));
+    setDefaultCommand(new StopLauncher(Robot.launcher));
   }
 
 }

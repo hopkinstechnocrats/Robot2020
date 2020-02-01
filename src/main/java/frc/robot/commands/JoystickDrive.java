@@ -20,14 +20,7 @@ public class JoystickDrive extends Command {
   boolean isFlipped;
   boolean isSquared;
   XboxController controller;
-  POVButton up;
-  POVButton upLeft;
-  POVButton left;
-  POVButton downLeft;
-  POVButton down;
-  POVButton downRight;
-  POVButton right;
-  POVButton upRight;
+  
 
   public JoystickDrive(TankDrive drivetrain, XboxController controller, double deadband, boolean isFlipped, boolean isSquared) {
     // Use requires() here to declare subsystem dependencies
@@ -37,14 +30,6 @@ public class JoystickDrive extends Command {
     this.isFlipped = isFlipped;
     this.isSquared = isSquared;
     this.controller = controller;
-    up = new POVButton(controller, 0);
-    upLeft = new POVButton(controller, 45);
-    left = new POVButton(controller, 90);
-    downLeft = new POVButton(controller, 135);
-    down = new POVButton(controller, 180);
-    downRight = new POVButton(controller, 225);
-    right = new POVButton(controller, 270);
-    upRight = new POVButton(controller, 315);
   }
 
   // Called just before this Command runs the first time
@@ -70,15 +55,6 @@ public class JoystickDrive extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if(up.get()){
-      drivetrain.setSpeed(1);
-    }else if(right.get()){
-      drivetrain.setSpeed(.75);
-    }else if(down.get()){
-      drivetrain.setSpeed(.6);
-    }else if (left.get()){
-      drivetrain.setSpeed(.25);
-    }
     return false;
   }
 

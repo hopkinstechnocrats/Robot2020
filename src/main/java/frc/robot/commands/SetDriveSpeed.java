@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.subsystems.*;
 
 /**
  * An example command.  You can replace me with your own command.
@@ -16,8 +17,10 @@ import frc.robot.Robot;
 public class SetDriveSpeed extends Command {
 
   private double speed;
+  private TankDrive tankdrive;
 
-  public SetDriveSpeed(double speed) {
+  public SetDriveSpeed(TankDrive tankdrive, double speed) {
+    this.tankdrive = tankdrive;
     this.speed = speed;
   }
 
@@ -29,7 +32,7 @@ public class SetDriveSpeed extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.tankDrive.setSpeed(speed);
+    tankdrive.setSpeed(speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
