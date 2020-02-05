@@ -3,6 +3,7 @@ package frc.robot;
 import java.util.HashMap;
 import frc.robot.logger.Status; //still needs to be implemented
 import frc.robot.components.Component;
+import frc.robot.components.Limelight;
 import frc.robot.components.Talon;
 import java.util.ArrayList;
 
@@ -18,6 +19,7 @@ public class Components {
         addComponent("LauncherLeft", new Talon(5));
         addComponent("LauncherRight", new Talon(6));
         addComponent("IntakeMotor", new Talon(7));
+        addComponent("Limelight", new Limelight());
     }
     
 

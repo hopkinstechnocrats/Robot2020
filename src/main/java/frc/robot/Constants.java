@@ -17,8 +17,9 @@ public class Constants {
     public static final int DRIVETRAIN_MOTION_PROFILE_ALLOWABLE_ERROR = 0;
     public static final double INTAKE_WHEELS_SPEED = -1;
     public static final double LAUNCHER_WHEELS_SPEED = -1;
-    public static final double LAUNCHER_WHEELS_ENCODER_SPEED = -10000;
+    public static final double LAUNCHER_WHEELS_ENCODER_SPEED = -6250;
     public static final double LAUNCHER_KP = 0.7;
     public static final double LAUNCHER_KI = 0.0001;
     public static final double LAUNCHER_KD = 60;
+    public static final double DRIVETRAIN_WIDTH = 27;
 }

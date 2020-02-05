@@ -17,6 +17,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.commands.JoystickDrive;
 import frc.robot.components.*;
+import frc.robot.motion.Movement;
+
 import com.ctre.phoenix.motion.MotionProfileStatus;
 import com.ctre.phoenix.motorcontrol.IMotorController;
 
@@ -66,6 +68,10 @@ public class TankDrive extends Subsystem {
 
   public void setSpeed(double speed){
     this.speed = speed;
+  }
+
+  public void driveMovement(Movement movement) {
+    this.tankDrive(movement.leftSpeed, movement.rightSpeed, false);
   }
 
   public void setFlipped(boolean flipped){
