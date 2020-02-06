@@ -8,7 +8,9 @@
 package frc.robot.targeting.aiming;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.motion.Movement;
 import frc.robot.targeting.vision.Camera;
+import frc.robot.targeting.vision.CameraData;
 
 /**
  * Generic Subsystem that uses camera data to aim towards a target
@@ -18,12 +20,14 @@ public class AimingSubsystem extends Subsystem {
   // here. Call these from Commands.
 
   Camera source;
+  CameraData target;
 
   public AimingSubsystem(Camera source) {
     this.source = source;
   }
 
-  public void getDrivetrainAction() {
+  public Movement getDrivetrainAction() {
+    CameraData data = source.getCameraData();
     
   }
 

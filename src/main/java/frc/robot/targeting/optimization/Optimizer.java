@@ -5,18 +5,17 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.motion;
+package frc.robot.targeting.optimization;
 
-import frc.robot.Constants;
+import frc.robot.motion.Movement;
+import frc.robot.targeting.vision.CameraData;
 
 /**
- * Twists clockwise about the center of the robot at a specified angular speed
+ * Add your docs here.
  */
-public class Twist extends Movement {
+public abstract class Optimizer {
 
-    public Twist(double angularspeed) {
-        this.leftSpeed = angularspeed*Constants.DRIVETRAIN_WIDTH/2;
-        this.rightSpeed = -angularspeed*Constants.DRIVETRAIN_WIDTH/2;
-    }
+    public abstract Movement getMovement(double position);
+
 
 }

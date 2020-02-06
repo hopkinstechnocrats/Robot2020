@@ -22,4 +22,5 @@ public class Constants {
     public static final double LAUNCHER_KI = 0.0001;
     public static final double LAUNCHER_KD = 60;
     public static final double DRIVETRAIN_WIDTH = 27;
+    public static final double TWIST_OPTIMIZER_KP = 0.01;
 }
