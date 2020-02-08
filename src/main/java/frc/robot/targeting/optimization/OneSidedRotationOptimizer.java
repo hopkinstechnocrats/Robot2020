@@ -10,45 +10,33 @@ package frc.robot.targeting.optimization;
 import java.util.Map;
 
 import frc.robot.Constants;
+import frc.robot.motion.OneSidedRotation;
 import frc.robot.motion.Movement;
-import frc.robot.motion.Twist;
+import frc.robot.targeting.vision.CameraData;
 
 /**
  * Twists the drivetrain in place to optimize a value towards a target
  */
-public class TwistOptimizer extends Optimizer {
+public class OneSidedRotationOptimizer extends Optimizer {
 
     double target;
     boolean sensorPhase;
 
-
-    /**
-     * 
-     * @param target optimal x value of the target
-     * @param sensorPhase whether x values increase clockwise
-     */
-    public TwistOptimizer(double target, boolean sensorPhase) {
+    public OneSidedRotationOptimizer(double target, boolean sensorPhase) {
         this.target = target;
         this.sensorPhase = sensorPhase;
     }
 
-    /** 
-     * 
-     * @param inputdata sensed values to optimize. In TwistOptimizer, consists of "position"
-     */
-    @Override
-    public Movement getMovement(Map<String, Object> inputdata) {
+    public Movement getMovement(Map<String, Object> inputData) {
         double error;
-        double position = (Double)inputdata.get("position");
+        double position = (Double)inputData.get("position");
 
         if (sensorPhase){
             error = target-position;
         } else {
             error = target+position;
         }
-        return new Twist(-error*Constants.TWIST_OPTIMIZER_KP);
+        
+        return new OneSidedRotation(error*Constants.TWIST_OPTIMIZER_KP, false);
     }
-
-
-
 }

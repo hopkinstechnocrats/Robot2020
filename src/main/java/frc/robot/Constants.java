@@ -15,12 +15,15 @@ public class Constants {
     public static final double DRIVETRAIN_MOTION_PROFILE_KP = 1;
     public static final double DRIVETRAIN_MOTION_PROFILE_KF = 0.04;
     public static final int DRIVETRAIN_MOTION_PROFILE_ALLOWABLE_ERROR = 0;
-    public static final double INTAKE_WHEELS_SPEED = -1;
+    public static final double INTAKE_WHEELS_SPEED = 1;
     public static final double LAUNCHER_WHEELS_SPEED = -1;
-    public static final double LAUNCHER_WHEELS_ENCODER_SPEED = -6250;
+    public static final double LAUNCHER_WHEELS_ENCODER_SPEED = -9500;
     public static final double LAUNCHER_KP = 0.7;
     public static final double LAUNCHER_KI = 0.0001;
     public static final double LAUNCHER_KD = 60;
     public static final double DRIVETRAIN_WIDTH = 27;
-    public static final double TWIST_OPTIMIZER_KP = 0.01;
+    public static final double TWIST_OPTIMIZER_KP = 0.003;
+	public static final double LIMELIGHT_TARGET_X = 0;
+    public static final boolean LIMELIGHT_SENSOR_PHASE = true;
+    public static final double FEED_WHEELS_SPEED = 1;
 }

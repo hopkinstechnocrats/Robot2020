@@ -14,5 +14,6 @@ public abstract class CameraData {
 
     public double x; // x coordinate of the center of the target in degrees
     public double y; // y coordinate of the center of the target in degrees
+    public boolean isTargetVisible;
 
 }

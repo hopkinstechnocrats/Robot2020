@@ -12,7 +12,6 @@ package frc.robot.targeting.vision;
  */
 public class LimelightCameraData extends CameraData {
 
-    public double isTargetVisible;
     public double targetArea;
     public double targetSkew;
     public double pipelineLatency;
@@ -20,7 +19,7 @@ public class LimelightCameraData extends CameraData {
     public double longSideLength;
     public double horizontalSideLength;
     public double verticalSideLength;
-    public double currentPipeline;
-    public double cameraTransformation;
+    public int currentPipeline;
+    public double[] cameraTransformation;
 
 }

@@ -7,52 +7,33 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import frc.robot.Constants;
-import frc.robot.Robot;
-import frc.robot.commands.SpinLauncher;
-import frc.robot.commands.StopLauncher;
-import frc.robot.components.*;
-
+import frc.robot.commands.FeedBall;
+import frc.robot.components.Talon;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
 
-public class Launcher extends Subsystem {
+public class Feed extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public DifferentialDrive diffDrive;
   XboxController controller;
-  Talon left;
-  Talon right;
+  Talon motor;
 
-  public Launcher(Talon left, Talon right, XboxController controller) {
+  public Feed(Talon component, XboxController controller) {
     this.controller = controller;
-    this.left = left;
-    this.right = right;
-    right.configureLauncherFalcon();
-    left.follow(right);
-    left.setInverted(true);
+    this.motor = component;
   }
 
-  public void spinWheels(double speed) {
-    right.setClosedLoopVelocity(speed);
-  }
-
-  public void setZero() {
-    right.set(0);
+  public void runFeed(double speed) {
+    motor.set(speed);
   }
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand();
-    setDefaultCommand(new StopLauncher(Robot.launcher));
+    setDefaultCommand(new FeedBall(this, 0));
   }
 
 }

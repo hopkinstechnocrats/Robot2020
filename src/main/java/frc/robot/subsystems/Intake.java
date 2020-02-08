@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Constants;
 import frc.robot.Robot;
+import frc.robot.commands.StopIntake;
 import frc.robot.components.*;
 
 
@@ -34,11 +35,13 @@ public class Intake extends Subsystem {
     motor.set(Constants.INTAKE_WHEELS_SPEED);
   }
 
+  public void stopIntake() {
+    motor.set(0);
+  }
+
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand();
-    
+    setDefaultCommand(new StopIntake(this));
   }
 
 }

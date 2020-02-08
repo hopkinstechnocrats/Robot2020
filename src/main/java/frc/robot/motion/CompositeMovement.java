@@ -5,13 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.targeting.targets;
+package frc.robot.motion;
 
 /**
  * Add your docs here.
  */
-public class Target {
+public class CompositeMovement extends Movement {
 
-    
+    public void addMovement(Movement movement) {
+        this.leftSpeed += movement.leftSpeed;
+        this.rightSpeed += movement.rightSpeed;
+    }
 
 }

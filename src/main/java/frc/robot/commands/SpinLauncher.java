@@ -15,7 +15,7 @@ import frc.robot.components.*;
 import frc.robot.Constants;
 import frc.robot.Robot;
 
-public class LauncherWheels extends Command {
+public class SpinLauncher extends Command {
 
   TankDrive drivetrain;
   double deadband;
@@ -27,7 +27,7 @@ public class LauncherWheels extends Command {
   double speed;
   Launcher launcher;
 
-  public LauncherWheels(Launcher launcher, double speed) {
+  public SpinLauncher(Launcher launcher, double speed) {
     // Use requires() here to declare subsystem dependencies
     this.launcher = launcher;
     this.speed = speed;

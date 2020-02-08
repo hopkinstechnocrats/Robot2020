@@ -20,6 +20,7 @@ import frc.robot.commands.*;
 public class OI {
 
   public XboxController controller;
+  public XboxController operatorController;
   POVButton up;
   POVButton upLeft;
   POVButton left;
@@ -35,35 +36,61 @@ public class OI {
   JoystickButton yButton;
   JoystickButton leftBumper;
   JoystickButton rightBumper;
+  JoystickButton rightStick;
+  JoystickButton leftStick;
 
-  public OI(XboxController controller){
+  JoystickButton operatorAbutton;
+  JoystickButton operatorBbutton;
+  JoystickButton operatorXbutton;
+  JoystickButton operatorYbutton;
+  JoystickButton operatorLeftBumper;
+  JoystickButton operatorRightBumper;
+  JoystickButton operatorLeftStick;
+  JoystickButton operatorRightStick;
+
+
+  public OI(XboxController controller, XboxController operatorController){
 
     this.controller = controller;
-     up = new POVButton(controller, 0);
-      upLeft = new POVButton(controller, 45);
-      left = new POVButton(controller, 90);
-      downLeft = new POVButton(controller, 135);
-      down = new POVButton(controller, 180);
-      downRight = new POVButton(controller, 225);
-      right = new POVButton(controller, 270);
-      upRight = new POVButton(controller, 315);
+    this.operatorController = operatorController;
+    up = new POVButton(controller, 0);
+    upLeft = new POVButton(controller, 45);
+    left = new POVButton(controller, 90);
+    downLeft = new POVButton(controller, 135);
+    down = new POVButton(controller, 180);
+    downRight = new POVButton(controller, 225);
+    right = new POVButton(controller, 270);
+    upRight = new POVButton(controller, 315);
     aButton = new JoystickButton(controller, 1);
     bButton = new JoystickButton(controller, 2);
     xButton = new JoystickButton(controller, 3);
     yButton = new JoystickButton(controller, 4);
     leftBumper = new JoystickButton(controller, 5);
     rightBumper = new JoystickButton(controller, 6);
-    aButton.whenPressed(new DriveMotionProfile("testpath", Robot.tankDrive));
-    leftBumper.whileHeld(new IntakeBall(Robot.intake));
-    rightBumper.whileHeld(new LauncherWheels(Robot.launcher, Constants.LAUNCHER_WHEELS_ENCODER_SPEED));
-    bButton.whileHeld(new LauncherWheels(Robot.launcher, .5));
-    xButton.whileHeld(new LauncherWheels(Robot.launcher, .475));
-    yButton.whileHeld(new LauncherWheels(Robot.launcher, .45));
+    rightStick = new JoystickButton(controller, 10);
+    leftStick = new JoystickButton(controller, 9);
+    operatorAbutton = new JoystickButton(operatorController, 1);
+    operatorBbutton = new JoystickButton(operatorController, 2);
+    operatorXbutton = new JoystickButton(operatorController, 3);
+    operatorYbutton = new JoystickButton(operatorController, 4);
+    operatorLeftBumper = new JoystickButton(operatorController, 5);
+    operatorRightBumper = new JoystickButton(operatorController, 6);
+    operatorLeftStick = new JoystickButton(operatorController, 9);
+    operatorRightStick = new JoystickButton(operatorController, 10);
+    operatorAbutton.whenPressed(new DriveMotionProfile("testpath", Robot.tankDrive));
+    operatorLeftBumper.whileHeld(new IntakeBall(Robot.intake));
+    operatorRightBumper.whileHeld(new SpinLauncher(Robot.launcher, Constants.LAUNCHER_WHEELS_ENCODER_SPEED));
+    operatorBbutton.whileHeld(new TurnToTape(Robot.launcherAimingSubsystem, Robot.tankDrive));
     up.whenPressed(new SetDriveSpeed(Robot.tankDrive, .8));
     right.whenPressed(new SetDriveSpeed(Robot.tankDrive, .65));
     down.whenPressed(new SetDriveSpeed(Robot.tankDrive, .5));
     left.whenPressed(new SetDriveSpeed(Robot.tankDrive, .35));
-
+    operatorRightStick.whileHeld(new FeedBall(Robot.feed, Constants.FEED_WHEELS_SPEED));
+    operatorLeftStick.whileHeld(new FeedBall(Robot.feed, -Constants.FEED_WHEELS_SPEED));
+    aButton.whenPressed(new DriveMotionProfile("testpath", Robot.tankDrive));
+    leftBumper.whileHeld(new IntakeBall(Robot.intake));
+    rightBumper.whileHeld(new SpinLauncher(Robot.launcher, Constants.LAUNCHER_WHEELS_ENCODER_SPEED));
+    
 
 
     // up.whenPressed(new SetDriveSpeed(1.0));

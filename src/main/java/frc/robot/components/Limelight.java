@@ -12,32 +12,32 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import frc.robot.logger.Status;
 import frc.robot.logger.StatusType;
-import frc.robot.vision.Camera;
-import frc.robot.vision.LimelightCameraData;
+import frc.robot.targeting.vision.Camera;
+import frc.robot.targeting.vision.LimelightCameraData;
 
 /**
  * Add your docs here.
  */
 public class Limelight extends Component implements Camera{
 
-    NetworkTable table;
-    NetworkTableEntry tx;
-    NetworkTableEntry ty;
-    NetworkTableEntry ta;
-    NetworkTableEntry tl;
-    NetworkTableEntry pipeline;
-    NetworkTableEntry tv;
-    NetworkTableEntry ts;
-    NetworkTableEntry tshort;
-    NetworkTableEntry tlong;
-    NetworkTableEntry thor;
-    NetworkTableEntry tvert;
-    NetworkTableEntry getpipe;
-    NetworkTableEntry camtran;
-    NetworkTableEntry ledMode;
-    NetworkTableEntry camMode;
-    NetworkTableEntry stream;
-    NetworkTableEntry snapshot;
+    public NetworkTable table;
+    public NetworkTableEntry ty;
+    public NetworkTableEntry tx;
+    public NetworkTableEntry ta;
+    public NetworkTableEntry tl;
+    public NetworkTableEntry pipeline;
+    public NetworkTableEntry tv;
+    public NetworkTableEntry ts;
+    public NetworkTableEntry tshort;
+    public NetworkTableEntry tlong;
+    public NetworkTableEntry thor;
+    public NetworkTableEntry tvert;
+    public NetworkTableEntry getpipe;
+    public NetworkTableEntry camtran;
+    public NetworkTableEntry ledMode;
+    public NetworkTableEntry camMode;
+    public NetworkTableEntry stream;
+    public NetworkTableEntry snapshot;
 
     public Limelight() {
         table = NetworkTableInstance.getDefault().getTable("limelight");
@@ -73,15 +73,16 @@ public class Limelight extends Component implements Camera{
         data.x = tx.getDouble(0);
         data.y = ty.getDouble(0);
         data.targetArea = ta.getDouble(0);
-        data.cameraTransformation = camtran.getDoubleArray({0,0,0,0,0,0});
-        data.currentPipeline = getpipe.getNumber(0);
-        data.isTargetVisible = tv.getBoolean(false);
-        data.longSideLength = tlong.getDouble();
+        data.cameraTransformation = camtran.getDoubleArray(new double[] {0,0,0,0,0,0});
+        data.currentPipeline = getpipe.getNumber(0).intValue();
+        data.isTargetVisible = tv.getNumber(0).intValue() == 1;
+        data.longSideLength = tlong.getDouble(0);
         data.pipelineLatency = tl.getDouble(0);
-        data.targetSkew = ts.getDouble();
-        data.shortSideLength = tshort.getDouble();
-        data.verticalSideLength = tvert.getDouble();
-        data.horizontalSideLength = thor.getDouble();
+        data.targetSkew = ts.getDouble(0);
+        data.shortSideLength = tshort.getDouble(0);
+        data.verticalSideLength = tvert.getDouble(0);
+        data.horizontalSideLength = thor.getDouble(0);
+        return data;
     }
 
 }

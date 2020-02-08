@@ -13,9 +13,12 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.components.Talon;
+import frc.robot.subsystems.Feed;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Launcher;
+import frc.robot.subsystems.LauncherAimingSubsystem;
 import frc.robot.subsystems.TankDrive;
+import frc.robot.targeting.vision.Camera;
 import edu.wpi.first.wpilibj.buttons.POVButton;
 
 /**
@@ -28,6 +31,7 @@ import edu.wpi.first.wpilibj.buttons.POVButton;
 public class Robot extends TimedRobot {
   public static Components components = new Components();
   private static XboxController controller = new XboxController(0);
+  private static XboxController operatorController = new XboxController(1);
   public static TankDrive tankDrive = new TankDrive((Talon)components.getComponent("LeftTalon1"), 
                                                     (Talon)components.getComponent("LeftTalon2"), 
                                                     (Talon)components.getComponent("RightTalon1"), 
@@ -35,7 +39,9 @@ public class Robot extends TimedRobot {
                                                     controller);
   public static Intake intake = new Intake((Talon)components.getComponent("IntakeMotor"), controller);
   public static Launcher launcher = new Launcher((Talon)components.getComponent("LauncherLeft"), (Talon)components.getComponent("LauncherRight"), controller);
-  public static OI oi = new OI(controller);
+  public static Feed feed = new Feed((Talon)components.getComponent("FeedMotor"), controller);
+  public static LauncherAimingSubsystem launcherAimingSubsystem = new LauncherAimingSubsystem(Constants.LIMELIGHT_TARGET_X, (Camera)components.getComponent("Limelight"));
+  public static OI oi = new OI(controller, operatorController);
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
