@@ -17,7 +17,6 @@ import frc.robot.targeting.aiming.AimingSubsystem;
 import frc.robot.targeting.optimization.TwistOptimizer;
 import frc.robot.targeting.vision.Camera;
 import frc.robot.targeting.vision.CameraData;
-import jdk.internal.jshell.tool.resources.l10n;
 
 /**
  * Add your docs here.
