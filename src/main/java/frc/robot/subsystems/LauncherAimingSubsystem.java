@@ -7,12 +7,17 @@
 
 package frc.robot.subsystems;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import frc.robot.Constants;
+import frc.robot.commands.CalculateDistance;
 import frc.robot.motion.Movement;
 import frc.robot.targeting.aiming.AimingSubsystem;
 import frc.robot.targeting.optimization.TwistOptimizer;
 import frc.robot.targeting.vision.Camera;
 import frc.robot.targeting.vision.CameraData;
+import jdk.internal.jshell.tool.resources.l10n;
 
 /**
  * Add your docs here.
@@ -37,9 +42,18 @@ public class LauncherAimingSubsystem extends AimingSubsystem {
     }
   }
 
+  public Map<String, Object> getHorizontalDistance() {
+    CameraData cameraData = source.getCameraData();
+    HashMap<String, Object> returnValue = new HashMap<String, Object>();
+    returnValue.put("isTargetVisible", cameraData.isTargetVisible);
+    returnValue.put("horizontalDistance", cameraData.y);
+    return returnValue;
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new CalculateDistance(this));
   }
 }

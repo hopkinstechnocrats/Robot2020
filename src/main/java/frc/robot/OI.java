@@ -11,6 +11,7 @@ import com.ctre.phoenix.ButtonMonitor;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.POVButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.*;
 /**
@@ -45,6 +46,8 @@ public class OI {
   JoystickButton operatorYbutton;
   JoystickButton operatorLeftBumper;
   JoystickButton operatorRightBumper;
+  JoystickButton operatorBackButton;
+  JoystickButton operatorStartButton;
   JoystickButton operatorLeftStick;
   JoystickButton operatorRightStick;
 
@@ -75,11 +78,14 @@ public class OI {
     operatorYbutton = new JoystickButton(operatorController, 4);
     operatorLeftBumper = new JoystickButton(operatorController, 5);
     operatorRightBumper = new JoystickButton(operatorController, 6);
+    operatorBackButton = new JoystickButton(operatorController, 7);
+    operatorStartButton = new JoystickButton(operatorController, 8);
     operatorLeftStick = new JoystickButton(operatorController, 9);
     operatorRightStick = new JoystickButton(operatorController, 10);
     operatorAbutton.whenPressed(new DriveMotionProfile("testpath", Robot.tankDrive));
     operatorLeftBumper.whileHeld(new IntakeBall(Robot.intake));
     operatorRightBumper.whileHeld(new SpinLauncher(Robot.launcher, Constants.LAUNCHER_WHEELS_ENCODER_SPEED));
+    operatorBackButton.whileHeld(new SpinLauncher(Robot.launcher, SmartDashboard.getNumber("LauncherSpeed", 0)));
     operatorBbutton.whileHeld(new TurnToTape(Robot.launcherAimingSubsystem, Robot.tankDrive));
     up.whenPressed(new SetDriveSpeed(Robot.tankDrive, .8));
     right.whenPressed(new SetDriveSpeed(Robot.tankDrive, .65));
