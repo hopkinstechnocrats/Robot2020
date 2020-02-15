@@ -20,8 +20,8 @@ public class Components {
         addComponent("LauncherRight", new Talon(6));
         addComponent("IntakeMotor", new Talon(7));
         addComponent("FeedMotor", new Talon(8));
+        addComponent("ClimbMotor", new Talon(9));
         addComponent("Limelight", new Limelight());
-
     }
     
 

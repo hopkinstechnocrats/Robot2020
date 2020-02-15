@@ -37,6 +37,7 @@ public class OI {
   JoystickButton yButton;
   JoystickButton leftBumper;
   JoystickButton rightBumper;
+  JoystickButton backButton;
   JoystickButton rightStick;
   JoystickButton leftStick;
 
@@ -50,6 +51,7 @@ public class OI {
   JoystickButton operatorStartButton;
   JoystickButton operatorLeftStick;
   JoystickButton operatorRightStick;
+
 
 
   public OI(XboxController controller, XboxController operatorController){
@@ -70,6 +72,7 @@ public class OI {
     yButton = new JoystickButton(controller, 4);
     leftBumper = new JoystickButton(controller, 5);
     rightBumper = new JoystickButton(controller, 6);
+    backButton = new JoystickButton(controller, 7);
     rightStick = new JoystickButton(controller, 10);
     leftStick = new JoystickButton(controller, 9);
     operatorAbutton = new JoystickButton(operatorController, 1);
@@ -87,6 +90,7 @@ public class OI {
     operatorRightBumper.whileHeld(new SpinLauncher(Robot.launcher, Constants.LAUNCHER_WHEELS_ENCODER_SPEED));
     operatorBackButton.whileHeld(new SpinLauncher(Robot.launcher, SmartDashboard.getNumber("LauncherSpeed", 0)));
     operatorBbutton.whileHeld(new TurnToTape(Robot.launcherAimingSubsystem, Robot.tankDrive));
+    operatorXbutton.whenPressed(new ExtendArm(Robot.intake));
     up.whenPressed(new SetDriveSpeed(Robot.tankDrive, .8));
     right.whenPressed(new SetDriveSpeed(Robot.tankDrive, .65));
     down.whenPressed(new SetDriveSpeed(Robot.tankDrive, .5));
@@ -94,8 +98,10 @@ public class OI {
     operatorRightStick.whileHeld(new FeedBall(Robot.feed, Constants.FEED_WHEELS_SPEED));
     operatorLeftStick.whileHeld(new FeedBall(Robot.feed, -Constants.FEED_WHEELS_SPEED));
     aButton.whenPressed(new DriveMotionProfile("testpath", Robot.tankDrive));
+    backButton.whileHeld(new SpinClimb(Robot.climb, Constants.CLIMB_WINCH_SPEED));
     leftBumper.whileHeld(new IntakeBall(Robot.intake));
     rightBumper.whileHeld(new SpinLauncher(Robot.launcher, Constants.LAUNCHER_WHEELS_ENCODER_SPEED));
+
     
 
 

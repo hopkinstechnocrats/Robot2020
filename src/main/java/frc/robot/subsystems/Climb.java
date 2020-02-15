@@ -9,46 +9,35 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import frc.robot.Constants;
-import frc.robot.Robot;
-import frc.robot.commands.StopIntake;
-import frc.robot.components.*;
-
-
+import frc.robot.commands.FeedBall;
+import frc.robot.components.Talon;
+import frc.robot.commands.StopClimb;
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
 
-public class Intake extends Subsystem {
+public class Climb extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   XboxController controller;
   Talon motor;
-  LinearActuator actuator;
 
-  public Intake(Talon motor, XboxController controller) {
+  public Climb(Talon component, XboxController controller) {
     this.controller = controller;
-    this.motor = motor;
-    this.actuator = new LinearActuator(Constants.INTAKE_SOLENOID_PORT, Constants.INTAKE_SOLENOID_DEFAULT_STATE);
-    this.actuator.initialize();
+    this.motor = component;
   }
 
-  public void runIntake() {
-    motor.set(Constants.INTAKE_WHEELS_SPEED);
+  public void runClimb(double speed) {
+    motor.set(speed);
   }
-
-  public void stopIntake() {
-    motor.set(0);
-  }
-
-  public void toggleActuator() {
-    actuator.toggleState();
+  
+  public void stopClimb() {
+      motor.set(0);
   }
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new StopIntake(this));
+    setDefaultCommand(new StopClimb(this));
   }
 
 }

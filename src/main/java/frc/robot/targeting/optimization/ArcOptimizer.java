@@ -10,31 +10,34 @@ package frc.robot.targeting.optimization;
 import java.util.Map;
 
 import frc.robot.Constants;
+import frc.robot.motion.Arc;
 import frc.robot.motion.Movement;
 import frc.robot.motion.Twist;
 
 /**
  * Twists the drivetrain in place to optimize a value towards a target
  */
-public class TwistOptimizer extends Optimizer {
+public class ArcOptimizer extends Optimizer {
 
     double target;
+    double forwardSpeed;
     boolean sensorPhase;
-
 
     /**
      * 
      * @param target optimal x value of the target
+     * @param forwardSpeed forward percent output speed to drive at
      * @param sensorPhase whether x values increase clockwise
      */
-    public TwistOptimizer(double target, boolean sensorPhase) {
+    public ArcOptimizer(double target, double forwardSpeed,boolean sensorPhase) {
         this.target = target;
         this.sensorPhase = sensorPhase;
+        this.forwardSpeed = forwardSpeed;
     }
 
     /** 
      * 
-     * @param inputdata sensed values to optimize. In TwistOptimizer, consists of "position"
+     * @param inputdata sensed values to optimize. In ArcOptimizer, consists of "position"
      */
     @Override
     public Movement getMovement(Map<String, Object> inputdata) {
@@ -46,7 +49,9 @@ public class TwistOptimizer extends Optimizer {
         } else {
             error = target+position;
         }
-        return new Twist(-error*Constants.TWIST_OPTIMIZER_KP);
+        return new Arc(-error*Constants.TWIST_OPTIMIZER_KP, this.forwardSpeed);
     }
+
+
 
 }

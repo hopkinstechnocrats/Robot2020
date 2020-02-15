@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.components.Talon;
+import frc.robot.subsystems.Climb;
 import frc.robot.subsystems.Feed;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Launcher;
@@ -40,6 +41,7 @@ public class Robot extends TimedRobot {
   public static Intake intake = new Intake((Talon)components.getComponent("IntakeMotor"), controller);
   public static Launcher launcher = new Launcher((Talon)components.getComponent("LauncherLeft"), (Talon)components.getComponent("LauncherRight"), controller);
   public static Feed feed = new Feed((Talon)components.getComponent("FeedMotor"), controller);
+  public static Climb climb = new Climb((Talon)components.getComponent("ClimbMotor"), controller);
   public static LauncherAimingSubsystem launcherAimingSubsystem = new LauncherAimingSubsystem(Constants.LIMELIGHT_TARGET_X, (Camera)components.getComponent("Limelight"));
   public static OI oi = new OI(controller, operatorController);
   Command m_autonomousCommand;

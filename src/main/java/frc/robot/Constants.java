@@ -25,5 +25,8 @@ public class Constants {
     public static final double TWIST_OPTIMIZER_KP = 0.003;
 	public static final double LIMELIGHT_TARGET_X = 0;
     public static final boolean LIMELIGHT_SENSOR_PHASE = true;
-    public static final double FEED_WHEELS_SPEED = 1;
+    public static final double FEED_WHEELS_SPEED = 0.5;
+    public static final double CLIMB_WINCH_SPEED = 0.5;
+    public static final int INTAKE_SOLENOID_PORT = 0;
+    public static final boolean INTAKE_SOLENOID_DEFAULT_STATE = true;
 }
