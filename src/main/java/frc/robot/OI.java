@@ -114,7 +114,7 @@ public class OI {
     aButton.whenPressed(new DriveMotionProfile("testpath", Robot.tankDrive));
     // bButton;
     xButton.whileHeld(new TurnToTape(Robot.launcherAimingSubsystem, Robot.tankDrive));
-    yButton.whileHeld(new VisionVision(Robot.launcherAimingSubsystem));
+    yButton.whileHeld(new TargetingVision(Robot.launcherAimingSubsystem));
     leftBumper.whileHeld(new IntakeBall(Robot.intake));
     rightBumper.whileHeld(new SpinLauncher(Robot.launcher, Constants.LAUNCHER_WHEELS_ENCODER_SPEED));
     // backButton;

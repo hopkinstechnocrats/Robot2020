@@ -10,11 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.subsystems.LauncherAimingSubsystem;
 
-public class LimelightDefaultCommand extends CommandGroup {
+public class LauncherAimingSubsystemDefaultCommand extends CommandGroup {
 
   LauncherAimingSubsystem limelight;
 
-  public LimelightDefaultCommand(LauncherAimingSubsystem limelight) {
+  public LauncherAimingSubsystemDefaultCommand(LauncherAimingSubsystem limelight) {
     // Use requires() here to declare subsystem dependencies
     requires(limelight);
     addSequential(new DriverVision(limelight));

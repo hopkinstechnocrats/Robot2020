@@ -36,6 +36,10 @@ public class AimingSubsystem extends Subsystem {
     return optimizer.getMovement(inputData);
   }
 
+  public Camera getSource(){
+    return source;
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

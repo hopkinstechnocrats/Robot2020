@@ -11,8 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import frc.robot.Constants;
-import frc.robot.commands.CalculateDistance;
-import frc.robot.commands.LimelightDefaultCommand;
+import frc.robot.commands.LauncherAimingSubsystemDefaultCommand;
 import frc.robot.motion.Movement;
 import frc.robot.targeting.aiming.AimingSubsystem;
 import frc.robot.targeting.optimization.TwistOptimizer;
@@ -58,6 +57,6 @@ public class LauncherAimingSubsystem extends AimingSubsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new LimelightDefaultCommand(this));
+    setDefaultCommand(new LauncherAimingSubsystemDefaultCommand(this));
   }
 }

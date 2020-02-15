@@ -11,11 +11,11 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.LauncherAimingSubsystem;
 import frc.robot.components.Limelight;
 
-public class VisionVision extends Command {
+public class TargetingVision extends Command {
 
   LauncherAimingSubsystem limelight;
 
-  public VisionVision(LauncherAimingSubsystem limelight) {
+  public TargetingVision(LauncherAimingSubsystem limelight) {
     // Use requires() here to declare subsystem dependencies
     requires(limelight);
     this.limelight = limelight;
