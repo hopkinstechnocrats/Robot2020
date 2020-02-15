@@ -7,12 +7,12 @@
 
 package frc.robot;
 
-import com.ctre.phoenix.ButtonMonitor;
-
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.POVButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.Trigger;
 import frc.robot.commands.*;
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -22,6 +22,7 @@ public class OI {
 
   public XboxController controller;
   public XboxController operatorController;
+  //ordered from 0->315, 45 increment
   POVButton up;
   POVButton upLeft;
   POVButton left;
@@ -30,7 +31,16 @@ public class OI {
   POVButton downRight;
   POVButton right;
   POVButton upRight;
- 
+  //ordered from 0->315, 45 increment
+  POVButton operatorUp;
+  POVButton operatorUpLeft;
+  POVButton operatorLeft;
+  POVButton operatorDownLeft;
+  POVButton operatorDown;
+  POVButton operatorDownRight;
+  POVButton operatorRight;
+  POVButton operatorUpRight;
+  //ordered from ID 1->10
   JoystickButton aButton;
   JoystickButton bButton;
   JoystickButton xButton;
@@ -38,13 +48,14 @@ public class OI {
   JoystickButton leftBumper;
   JoystickButton rightBumper;
   JoystickButton backButton;
-  JoystickButton rightStick;
+  JoystickButton startButton;
   JoystickButton leftStick;
-
-  JoystickButton operatorAbutton;
-  JoystickButton operatorBbutton;
-  JoystickButton operatorXbutton;
-  JoystickButton operatorYbutton;
+  JoystickButton rightStick;
+  //ordered from ID 1->10
+  JoystickButton operatorAButton;
+  JoystickButton operatorBButton;
+  JoystickButton operatorXButton;
+  JoystickButton operatorYButton;
   JoystickButton operatorLeftBumper;
   JoystickButton operatorRightBumper;
   JoystickButton operatorBackButton;
@@ -54,18 +65,29 @@ public class OI {
 
 
 
+
   public OI(XboxController controller, XboxController operatorController){
 
     this.controller = controller;
     this.operatorController = operatorController;
     up = new POVButton(controller, 0);
-    upLeft = new POVButton(controller, 45);
-    left = new POVButton(controller, 90);
-    downLeft = new POVButton(controller, 135);
+    upRight = new POVButton(controller, 45);
+    right = new POVButton(controller, 90);
+    downRight = new POVButton(controller, 135);
     down = new POVButton(controller, 180);
-    downRight = new POVButton(controller, 225);
-    right = new POVButton(controller, 270);
-    upRight = new POVButton(controller, 315);
+    downLeft = new POVButton(controller, 225);
+    left = new POVButton(controller, 270);
+    upLeft = new POVButton(controller, 315);
+
+    operatorUp = new POVButton(operatorController, 0);
+    operatorUpRight = new POVButton(operatorController, 45);
+    operatorRight = new POVButton(operatorController, 90);
+    operatorDownRight = new POVButton(operatorController, 135);
+    operatorDown = new POVButton(operatorController, 180);
+    operatorDownLeft = new POVButton(operatorController, 225);
+    operatorLeft = new POVButton(operatorController, 270);
+    operatorUpLeft = new POVButton(operatorController, 315);
+
     aButton = new JoystickButton(controller, 1);
     bButton = new JoystickButton(controller, 2);
     xButton = new JoystickButton(controller, 3);
@@ -73,42 +95,55 @@ public class OI {
     leftBumper = new JoystickButton(controller, 5);
     rightBumper = new JoystickButton(controller, 6);
     backButton = new JoystickButton(controller, 7);
-    rightStick = new JoystickButton(controller, 10);
+    startButton = new JoystickButton(controller, 8);
     leftStick = new JoystickButton(controller, 9);
-    operatorAbutton = new JoystickButton(operatorController, 1);
-    operatorBbutton = new JoystickButton(operatorController, 2);
-    operatorXbutton = new JoystickButton(operatorController, 3);
-    operatorYbutton = new JoystickButton(operatorController, 4);
+    rightStick = new JoystickButton(controller, 10);
+
+    operatorAButton = new JoystickButton(operatorController, 1);
+    operatorBButton = new JoystickButton(operatorController, 2);
+    operatorXButton = new JoystickButton(operatorController, 3);
+    operatorYButton = new JoystickButton(operatorController, 4);
     operatorLeftBumper = new JoystickButton(operatorController, 5);
     operatorRightBumper = new JoystickButton(operatorController, 6);
     operatorBackButton = new JoystickButton(operatorController, 7);
     operatorStartButton = new JoystickButton(operatorController, 8);
     operatorLeftStick = new JoystickButton(operatorController, 9);
     operatorRightStick = new JoystickButton(operatorController, 10);
-    operatorAbutton.whenPressed(new DriveMotionProfile("testpath", Robot.tankDrive));
-    operatorLeftBumper.whileHeld(new IntakeBall(Robot.intake));
-    operatorRightBumper.whileHeld(new SpinLauncher(Robot.launcher, Constants.LAUNCHER_WHEELS_ENCODER_SPEED));
-    operatorBackButton.whileHeld(new SpinLauncher(Robot.launcher, SmartDashboard.getNumber("LauncherSpeed", 0)));
-    operatorBbutton.whileHeld(new TurnToTape(Robot.launcherAimingSubsystem, Robot.tankDrive));
-    operatorXbutton.whenPressed(new ExtendArm(Robot.intake));
+
+
+    aButton.whenPressed(new DriveMotionProfile("testpath", Robot.tankDrive));
+    // bButton;
+    xButton.whileHeld(new TurnToTape(Robot.launcherAimingSubsystem, Robot.tankDrive));
+    yButton.whileHeld(new VisionVision(Robot.launcherAimingSubsystem));
+    leftBumper.whileHeld(new IntakeBall(Robot.intake));
+    rightBumper.whileHeld(new SpinLauncher(Robot.launcher, Constants.LAUNCHER_WHEELS_ENCODER_SPEED));
+    // backButton;
+    startButton.whileHeld(new SpinClimb(Robot.climb, Constants.CLIMB_WINCH_SPEED));
+    // leftStick;
+    // rightStick;
+
     up.whenPressed(new SetDriveSpeed(Robot.tankDrive, .8));
     right.whenPressed(new SetDriveSpeed(Robot.tankDrive, .65));
     down.whenPressed(new SetDriveSpeed(Robot.tankDrive, .5));
     left.whenPressed(new SetDriveSpeed(Robot.tankDrive, .35));
-    operatorRightStick.whileHeld(new FeedBall(Robot.feed, Constants.FEED_WHEELS_SPEED));
-    operatorLeftStick.whileHeld(new FeedBall(Robot.feed, -Constants.FEED_WHEELS_SPEED));
-    aButton.whenPressed(new DriveMotionProfile("testpath", Robot.tankDrive));
-    backButton.whileHeld(new SpinClimb(Robot.climb, Constants.CLIMB_WINCH_SPEED));
-    leftBumper.whileHeld(new IntakeBall(Robot.intake));
-    rightBumper.whileHeld(new SpinLauncher(Robot.launcher, Constants.LAUNCHER_WHEELS_ENCODER_SPEED));
-
     
 
 
-    // up.whenPressed(new SetDriveSpeed(1.0));
-    // left.whenPressed(new SetDriveSpeed(.75));
-    // down.whenPressed(new SetDriveSpeed(.5));
-    // right.whenPressed(new SetDriveSpeed(.25));
+    operatorAButton.whenPressed(new DriveMotionProfile("testpath", Robot.tankDrive));
+    // operatorBButton;
+    operatorXButton.whenPressed(new ExtendArm(Robot.intake));
+    // operatorYButton;
+    operatorLeftBumper.whileHeld(new IntakeBall(Robot.intake));
+    operatorRightBumper.whileHeld(new SpinLauncher(Robot.launcher, Constants.LAUNCHER_WHEELS_ENCODER_SPEED));
+    operatorBackButton.whileHeld(new SpinLauncher(Robot.launcher, SmartDashboard.getNumber("LauncherSpeed", 0)));
+    // operatorStartButton;
+    operatorLeftStick.whileHeld(new FeedBall(Robot.feed, -Constants.FEED_WHEELS_SPEED));
+    operatorRightStick.whileHeld(new FeedBall(Robot.feed, Constants.FEED_WHEELS_SPEED));
+
+    // operatorUp;
+    // operatorRight;
+    // operatorDown;
+    // operatorLeft;
 
   }
 
