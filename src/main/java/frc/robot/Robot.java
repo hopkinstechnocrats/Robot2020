@@ -12,6 +12,9 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import frc.robot.commands.autoroutines.DriveBackwardsThenLaunchThreeBalls;
+import frc.robot.commands.autoroutines.ThreeBallsFromStartingPosition;
+import frc.robot.components.Limelight;
 import frc.robot.components.Talon;
 import frc.robot.subsystems.Climb;
 import frc.robot.subsystems.Feed;
@@ -20,7 +23,6 @@ import frc.robot.subsystems.Launcher;
 import frc.robot.subsystems.LauncherAimingSubsystem;
 import frc.robot.subsystems.TankDrive;
 import frc.robot.targeting.vision.Camera;
-import edu.wpi.first.wpilibj.buttons.POVButton;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -45,7 +47,7 @@ public class Robot extends TimedRobot {
   public static LauncherAimingSubsystem launcherAimingSubsystem = new LauncherAimingSubsystem(Constants.LIMELIGHT_TARGET_X, (Camera)components.getComponent("Limelight"));
   public static OI oi = new OI(controller, operatorController);
   Command m_autonomousCommand;
-  SendableChooser<Command> m_chooser = new SendableChooser<>();
+  SendableChooser<Command> m_chooser = new SendableChooser<Command>();
 
   /**
    * This function is run when the robot is first started up and should be
@@ -70,6 +72,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    ((Limelight)launcherAimingSubsystem.getSource()).setPipeline(1);
   }
 
   /**
@@ -79,11 +82,13 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    ((Limelight)launcherAimingSubsystem.getSource()).setPipeline(1);
   }
 
   @Override
   public void disabledPeriodic() {
     Scheduler.getInstance().run();
+    ((Limelight)launcherAimingSubsystem.getSource()).setPipeline(1);
   }
 
   /**
@@ -99,8 +104,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_chooser.getSelected();
-
+    //m_autonomousCommand = m_chooser.getSelected();
+    m_autonomousCommand = new DriveBackwardsThenLaunchThreeBalls(launcher, feed, tankDrive);
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
      * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand

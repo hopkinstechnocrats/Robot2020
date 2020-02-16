@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Launcher;
 import frc.robot.subsystems.TankDrive;
 import frc.robot.components.*;
@@ -43,12 +44,14 @@ public class SpinLauncher extends Command {
   @Override
   protected void execute() {
     launcher.spinWheels(speed);
+    SmartDashboard.putNumber("LauncherWheelsSpeed", launcher.getSpeed());
+    SmartDashboard.putBoolean("IsLauncherFastEnough", launcher.getSpeed()>(speed-50));
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true

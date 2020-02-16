@@ -8,7 +8,9 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.Launcher;
 
 public class StopLauncher extends Command {
@@ -31,6 +33,8 @@ public class StopLauncher extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    SmartDashboard.putNumber("LauncherWheelsSpeed", launcher.getSpeed());
+    SmartDashboard.putBoolean("IsLauncherFastEnough", launcher.getSpeed()>(Constants.LAUNCHER_WHEELS_ENCODER_SPEED-50));
     launcher.setZero();
   }
 

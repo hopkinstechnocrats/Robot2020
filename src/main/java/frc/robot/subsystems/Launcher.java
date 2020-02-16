@@ -44,6 +44,10 @@ public class Launcher extends Subsystem {
     right.setClosedLoopVelocity(speed);
   }
 
+  public int getSpeed() {
+    return right.getEncoderSpeed();
+  }
+
   public void setZero() {
     right.set(0);
   }
