@@ -7,21 +7,25 @@
 
 package frc.robot.commands.autoroutines;
 
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Constants;
 import frc.robot.commands.FeedBall;
+import frc.robot.commands.SetFeedSpeed;
 import frc.robot.commands.SpinLauncher;
+import frc.robot.commands.StopLauncher;
 import frc.robot.subsystems.Feed;
 import frc.robot.subsystems.Launcher;
 
-public class ThreeBallsFromStartingPosition extends CommandGroup {
+public class ShootThreeBalls extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public ThreeBallsFromStartingPosition(Launcher launcher, Feed feed) {
-    addSequential(new SpinLauncher(launcher, Constants.LAUNCHER_WHEELS_ENCODER_SPEED), 5);
-    addParallel(new SpinLauncher(launcher, Constants.LAUNCHER_WHEELS_ENCODER_SPEED), 10);
-    addParallel(new FeedBall(feed, Constants.FEED_WHEELS_SPEED), 10);
+  public ShootThreeBalls(Launcher launcher, Feed feed) {
+    addSequential(new StopLauncher(launcher), 3);
+    addSequential(new SpinLauncher(launcher, Constants.CLOSE_LAUNCHER_WHEELS_ENCODER_SPEED), 2);
+    addParallel(new SetFeedSpeed(feed, .35));
+    addParallel(new SpinLauncher(launcher, Constants.CLOSE_LAUNCHER_WHEELS_ENCODER_SPEED), 7);
+    addSequential(new FeedBall(feed, false), 7);
+    addSequential(new SetFeedSpeed(feed, .5));
   }
 }

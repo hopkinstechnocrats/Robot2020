@@ -34,7 +34,7 @@ public class StopLauncher extends Command {
   @Override
   public void execute() {
     SmartDashboard.putNumber("LauncherWheelsSpeed", launcher.getSpeed());
-    SmartDashboard.putBoolean("IsLauncherFastEnough", launcher.getSpeed()>(Constants.LAUNCHER_WHEELS_ENCODER_SPEED-50));
+    SmartDashboard.putBoolean("IsLauncherFastEnough", launcher.getSpeed()>(Constants.CLOSE_LAUNCHER_WHEELS_ENCODER_SPEED));
     launcher.setZero();
   }
 

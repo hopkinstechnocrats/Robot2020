@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Constants;
 import frc.robot.commands.DriveMotionProfile;
 import frc.robot.commands.FeedBall;
+import frc.robot.commands.SetFeedSpeed;
 import frc.robot.commands.SpinLauncher;
 import frc.robot.subsystems.Feed;
 import frc.robot.subsystems.Launcher;
@@ -21,9 +22,13 @@ public class DriveBackwardsThenLaunchThreeBalls extends CommandGroup {
    * Add your docs here.
    */
   public DriveBackwardsThenLaunchThreeBalls(Launcher launcher, Feed feed, TankDrive drivetrain) {
-    addParallel(new DriveMotionProfile("backwardsOneFoot", drivetrain));
-    addSequential(new SpinLauncher(launcher, Constants.LAUNCHER_WHEELS_ENCODER_SPEED), 5);
-    addParallel(new SpinLauncher(launcher, Constants.LAUNCHER_WHEELS_ENCODER_SPEED), 10);
-    addParallel(new FeedBall(feed, Constants.FEED_WHEELS_SPEED), 10);
+    // addParallel(new DriveMotionProfile("backwardsOneFoot", drivetrain));
+    // addSequential(new SpinLauncher(launcher, Constants.CLOSE_LAUNCHER_WHEELS_ENCODER_SPEED), 5);
+    // addParallel(new SetFeedSpeed(feed, .35));
+    // addParallel(new SpinLauncher(launcher, Constants.CLOSE_LAUNCHER_WHEELS_ENCODER_SPEED), 9);
+    // addSequential(new FeedBall(feed), 9);
+    // addSequential(new SetFeedSpeed(feed, .5));
+    addParallel(new DriveBackwards(drivetrain));
+    addParallel(new ShootThreeBalls(launcher, feed));
   }
 }

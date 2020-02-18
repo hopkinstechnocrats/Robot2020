@@ -112,11 +112,11 @@ public class OI {
 
 
     aButton.whenPressed(new DriveMotionProfile("testpath", Robot.tankDrive));
-    // bButton;
+    bButton.whileHeld(new SpinLauncher(Robot.launcher, Constants.CLOSE_LAUNCHER_WHEELS_ENCODER_SPEED));
     xButton.whileHeld(new TurnToTape(Robot.launcherAimingSubsystem, Robot.tankDrive));
     yButton.whileHeld(new TargetingVision(Robot.launcherAimingSubsystem));
-    leftBumper.whileHeld(new IntakeBall(Robot.intake));
-    rightBumper.whileHeld(new SpinLauncher(Robot.launcher, Constants.LAUNCHER_WHEELS_ENCODER_SPEED));
+    leftBumper.whileHeld(new IntakeBall(Robot.intake, false));
+    rightBumper.whileHeld(new SpinLauncher(Robot.launcher, Constants.FAR_LAUNCHER_WHEELS_ENCODER_SPEED));
     // backButton;
     startButton.whileHeld(new SpinClimb(Robot.climb, Constants.CLIMB_WINCH_SPEED));
     // leftStick;
@@ -129,21 +129,21 @@ public class OI {
     
 
 
-    operatorAButton.whenPressed(new DriveMotionProfile("testpath", Robot.tankDrive));
-    // operatorBButton;
+    operatorAButton.whileHeld(new SpinLauncher(Robot.launcher, Constants.CLOSE_LAUNCHER_WHEELS_ENCODER_SPEED));
+    operatorBButton.whileHeld(new SpinLauncher(Robot.launcher, Constants.MEDIUM_LAUNCHER_WHEELS_ENCODER_SPEED));
     operatorXButton.whenPressed(new ExtendArm(Robot.intake));
-    // operatorYButton;
-    operatorLeftBumper.whileHeld(new IntakeBall(Robot.intake));
-    operatorRightBumper.whileHeld(new SpinLauncher(Robot.launcher, Constants.LAUNCHER_WHEELS_ENCODER_SPEED));
-    operatorBackButton.whileHeld(new SpinLauncher(Robot.launcher, SmartDashboard.getNumber("LauncherSpeed", 0)));
-    // operatorStartButton;
-    operatorLeftStick.whileHeld(new FeedBall(Robot.feed, -Constants.FEED_WHEELS_SPEED));
-    operatorRightStick.whileHeld(new FeedBall(Robot.feed, Constants.FEED_WHEELS_SPEED));
+    operatorYButton.whileHeld(new SpinLauncher(Robot.launcher, Constants.FAR_LAUNCHER_WHEELS_ENCODER_SPEED));
+    operatorLeftBumper.whileHeld(new IntakeBall(Robot.intake, false));
+    operatorRightBumper.whileHeld(new SpinLauncher(Robot.launcher, Constants.FAR_LAUNCHER_WHEELS_ENCODER_SPEED));
+    operatorBackButton.whileHeld(new IntakeBall(Robot.intake, true));
+    operatorStartButton.whileHeld(new SpinLauncher(Robot.launcher, SmartDashboard.getNumber("LauncherSpeed", 0)));
+    operatorLeftStick.whileHeld(new FeedBall(Robot.feed, true));
+    operatorRightStick.whileHeld(new FeedBall(Robot.feed, false));
 
-    // operatorUp;
-    // operatorRight;
-    // operatorDown;
-    // operatorLeft;
+    operatorUp.whenPressed(new SetFeedSpeed(Robot.feed, .70));
+    operatorRight.whenPressed(new SetFeedSpeed(Robot.feed, Constants.FEED_WHEELS_SPEED));
+    operatorDown.whenPressed(new SetFeedSpeed(Robot.feed, .40));
+    operatorLeft.whenPressed(new SetFeedSpeed(Robot.feed, .30));
 
   }
 

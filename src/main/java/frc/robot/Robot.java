@@ -12,8 +12,11 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.DriverVision;
+import frc.robot.commands.autoroutines.DriveBackwards;
 import frc.robot.commands.autoroutines.DriveBackwardsThenLaunchThreeBalls;
-import frc.robot.commands.autoroutines.ThreeBallsFromStartingPosition;
+import frc.robot.commands.autoroutines.ShootThreeBalls;
 import frc.robot.components.Limelight;
 import frc.robot.components.Talon;
 import frc.robot.subsystems.Climb;
@@ -55,7 +58,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    
+    ((Limelight)launcherAimingSubsystem.getSource()).setPipeline(1);
+    m_chooser.addOption("DriveBackwards", new DriveBackwards(tankDrive));
+    m_chooser.addOption("DriveBackwardsThenLaunchThreeBalls", new DriveBackwardsThenLaunchThreeBalls(launcher, feed, tankDrive));
+    m_chooser.addOption("ThreeBallsFromStartingPosition", new ShootThreeBalls(launcher, feed));
+    SmartDashboard.putData("Autonomous Routine", m_chooser);
     //tankDrive = new TankDrive((Talon)components.getComponent("leftTalon1"), (Talon)components.getComponent("leftTalon2"), (Talon)components.getComponent("rightTalon1"), (Talon)components.getComponent("rightTalon2"));
     // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
@@ -72,7 +79,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    ((Limelight)launcherAimingSubsystem.getSource()).setPipeline(1);
   }
 
   /**
@@ -104,7 +110,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    //m_autonomousCommand = m_chooser.getSelected();
+    // m_autonomousCommand = m_chooser.getSelected();
     m_autonomousCommand = new DriveBackwardsThenLaunchThreeBalls(launcher, feed, tankDrive);
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",

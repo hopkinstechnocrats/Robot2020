@@ -34,8 +34,12 @@ public class Intake extends Subsystem {
     this.actuator.initialize();
   }
 
-  public void runIntake() {
-    motor.set(Constants.INTAKE_WHEELS_SPEED);
+  public void runIntake(boolean inverted) {
+    if(inverted){
+      motor.set(-Constants.INTAKE_WHEELS_SPEED);
+    }else{
+      motor.set(Constants.INTAKE_WHEELS_SPEED);
+    }
   }
 
   public void stopIntake() {

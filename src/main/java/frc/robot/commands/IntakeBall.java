@@ -34,11 +34,13 @@ public class IntakeBall extends Command {
   POVButton right;
   POVButton upRight;
   Intake subsystem;
+  boolean inverted;
 
-  public IntakeBall(Intake intake) {
+  public IntakeBall(Intake intake, boolean inverted) {
     // Use requires() here to declare subsystem dependencies
     requires(intake);
     this.subsystem = intake;
+    this.inverted = inverted;
   }
 
   // Called just before this Command runs the first time
@@ -49,7 +51,7 @@ public class IntakeBall extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    subsystem.runIntake();
+    subsystem.runIntake(inverted);
   }
   // Called once after isFinished returns true
   @Override

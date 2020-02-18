@@ -29,7 +29,7 @@ public class TargetingVision extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    ((Limelight)limelight.getSource()).setPipeline(1);
+    ((Limelight)limelight.getSource()).setPipeline(0);
   }
   // Called once after isFinished returns true
   @Override

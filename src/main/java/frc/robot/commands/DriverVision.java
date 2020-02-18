@@ -29,7 +29,7 @@ public class DriverVision extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    ((Limelight)limelight.getSource()).setPipeline(0);
+    ((Limelight)limelight.getSource()).setPipeline(1);
   }
   // Called once after isFinished returns true
   @Override

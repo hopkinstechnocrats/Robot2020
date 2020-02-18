@@ -32,7 +32,8 @@ public class LauncherAimingSubsystem extends AimingSubsystem {
   public Movement getDrivetrainAction() {
     CameraData cameraData = source.getCameraData();
     if (cameraData.isTargetVisible) {
-      return super.getDrivetrainAction(source.getCameraData().x);
+      return super.getDrivetrainAction(source.getCameraData().x
+      );
     } else {
       Movement movement = new Movement();
       movement.leftSpeed = 0;
