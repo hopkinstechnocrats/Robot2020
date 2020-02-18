@@ -117,7 +117,7 @@ public class OI {
     yButton.whileHeld(new TargetingVision(Robot.launcherAimingSubsystem));
     leftBumper.whileHeld(new IntakeBall(Robot.intake, false));
     rightBumper.whileHeld(new SpinLauncher(Robot.launcher, Constants.FAR_LAUNCHER_WHEELS_ENCODER_SPEED));
-    // backButton;
+    backButton.whileHeld(new SpinClimb(Robot.climb, -Constants.CLIMB_WINCH_SPEED));
     startButton.whileHeld(new SpinClimb(Robot.climb, Constants.CLIMB_WINCH_SPEED));
     // leftStick;
     // rightStick;
