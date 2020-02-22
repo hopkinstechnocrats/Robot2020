@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import java.util.HashMap;
 import java.util.Map;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 import frc.robot.commands.LauncherAimingSubsystemDefaultCommand;
 import frc.robot.motion.Movement;
@@ -17,16 +18,19 @@ import frc.robot.targeting.aiming.AimingSubsystem;
 import frc.robot.targeting.optimization.TwistOptimizer;
 import frc.robot.targeting.vision.Camera;
 import frc.robot.targeting.vision.CameraData;
-
+import frc.robot.targeting.geometry.DistanceCalculator;
 /**
  * Add your docs here.
  */
 public class LauncherAimingSubsystem extends AimingSubsystem {
   // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+  // here. Call these from Commands.\
+  DistanceCalculator distanceCalculator;
 
   public LauncherAimingSubsystem(double targetPos, Camera source) {
     super(new TwistOptimizer(Constants.LIMELIGHT_TARGET_X, Constants.LIMELIGHT_SENSOR_PHASE), source);
+    distanceCalculator = new DistanceCalculator(Constants.CAMERA_ANGLE_TO_HORIZONTAL, Constants.CAMERA_TO_TARGET_VERTICAL_DISTANCE);
+    SmartDashboard.putNumber("LauncherWheelsSetSpeed", -8000);
   }
 
   public Movement getDrivetrainAction() {
@@ -46,7 +50,7 @@ public class LauncherAimingSubsystem extends AimingSubsystem {
     CameraData cameraData = source.getCameraData();
     HashMap<String, Object> returnValue = new HashMap<String, Object>();
     returnValue.put("isTargetVisible", cameraData.isTargetVisible);
-    returnValue.put("horizontalDistance", cameraData.y);
+    returnValue.put("horizontalDistance", distanceCalculator.calculateHorizontalDistance(cameraData.y));
     return returnValue;
   }
 

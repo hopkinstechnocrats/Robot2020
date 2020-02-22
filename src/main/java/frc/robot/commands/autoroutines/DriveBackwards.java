@@ -16,6 +16,6 @@ public class DriveBackwards extends CommandGroup {
    * Add your docs here.
    */
   public DriveBackwards(TankDrive drivetrain) {
-    addSequential(new DriveMotionProfile("backwardsOneFoot", drivetrain));
+    addSequential(new DriveMotionProfile("backwardsOneFoot", drivetrain, true));
   }
 }

@@ -33,6 +33,8 @@ public class Constants {
     public static final double TWIST_OPTIMIZER_KP = 0.003;
 	public static final double LIMELIGHT_TARGET_X = 0;
     public static final boolean LIMELIGHT_SENSOR_PHASE = true;
+    public static final double CAMERA_ANGLE_TO_HORIZONTAL = 15;
+    public static final double CAMERA_TO_TARGET_VERTICAL_DISTANCE = 52.5;
     //feed
     public static final double FEED_WHEELS_SPEED = 0.5;
     //climb

@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.LauncherAimingSubsystem;
 import frc.robot.components.Limelight;
 
@@ -30,6 +31,8 @@ public class TargetingVision extends Command {
   @Override
   protected void execute() {
     ((Limelight)limelight.getSource()).setPipeline(0);
+    SmartDashboard.putNumber("distanceToTarget", ((Double)limelight.getHorizontalDistance().get("horizontalDistance")));
+    SmartDashboard.putBoolean("isTargetVisible", (Boolean)limelight.getHorizontalDistance().get("isTargetVisible"));
   }
   // Called once after isFinished returns true
   @Override

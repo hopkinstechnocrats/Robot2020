@@ -17,17 +17,27 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.TankDrive;
 import com.ctre.phoenix.motion.MotionProfileStatus;
 
+/**
+ * Command to drive a motion profile using the MPE on the Talons in the Drivetrain.
+ */
 public class DriveMotionProfile extends Command {
 
   String name;
   TankDrive drivetrain;
   Boolean done;
+  Boolean isInverted;
   MotorSafety motorSafetyInst;
 
-  public DriveMotionProfile(String name, TankDrive drivetrain){
+  /**
+   * 
+   * @param name Name of the Motion Profile created in PathWeaver
+   * @param drivetrain TankDrive subsystem object
+   */
+  public DriveMotionProfile(String name, TankDrive drivetrain, boolean isInverted){
     done = false;
     this.name = name;
     this.drivetrain = drivetrain;
+    this.isInverted = isInverted;
     requires(drivetrain);
   }
 
@@ -37,7 +47,7 @@ public class DriveMotionProfile extends Command {
     drivetrain.clearOldMotionProfiles();
     drivetrain.zeroEncoders();
     try{
-      drivetrain.loadMotionProfile(name);
+      drivetrain.loadMotionProfile(name, isInverted);
     } catch (IOException e) {
       done = true;
     }
@@ -46,19 +56,15 @@ public class DriveMotionProfile extends Command {
 
   @Override
   protected void execute() {
-    drivetrain.leftTalon1.hardwareTalon.feed();
-    drivetrain.rightTalon1.hardwareTalon.feed();
-    drivetrain.leftTalon2.hardwareTalon.feed();
-    drivetrain.rightTalon2.hardwareTalon.feed();
-    drivetrain.diffDrive.feed();
+    drivetrain.feedMotorSafety();
     HashMap<String, MotionProfileStatus> statuses = drivetrain.getMotionProfileStatuses();
     
-    SmartDashboard.putNumber("LeftTopBufferCnt", statuses.get("Left").topBufferCnt);
-    SmartDashboard.putNumber("LeftTopBufferRem", statuses.get("Left").topBufferRem);
-    SmartDashboard.putNumber("RightTopBufferCnt", statuses.get("Right").topBufferCnt);
-    SmartDashboard.putNumber("RightTopBufferRem", statuses.get("Right").topBufferRem);
-    SmartDashboard.putBoolean("RightHasUnderrun", statuses.get("Right").hasUnderrun);
-    SmartDashboard.putBoolean("LeftHasUnderrun", statuses.get("Left").hasUnderrun);
+    // SmartDashboard.putNumber("LeftTopBufferCnt", statuses.get("Left").topBufferCnt);
+    // SmartDashboard.putNumber("LeftTopBufferRem", statuses.get("Left").topBufferRem);
+    // SmartDashboard.putNumber("RightTopBufferCnt", statuses.get("Right").topBufferCnt);
+    // SmartDashboard.putNumber("RightTopBufferRem", statuses.get("Right").topBufferRem);
+    // SmartDashboard.putBoolean("RightHasUnderrun", statuses.get("Right").hasUnderrun);
+    // SmartDashboard.putBoolean("LeftHasUnderrun", statuses.get("Left").hasUnderrun);
   }
 
   // Make this return true when this Command no longer needs to run execute()

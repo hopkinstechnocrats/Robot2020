@@ -127,4 +127,8 @@ public class Talon extends Component implements SpeedController{
     public int getEncoderSpeed() {
         return hardwareTalon.getSelectedSensorVelocity();
     }
+
+    public void feed() {
+        hardwareTalon.feed();
+    }
 }

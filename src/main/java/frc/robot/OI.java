@@ -111,7 +111,6 @@ public class OI {
     operatorRightStick = new JoystickButton(operatorController, 10);
 
 
-    aButton.whenPressed(new DriveMotionProfile("testpath", Robot.tankDrive));
     bButton.whileHeld(new SpinLauncher(Robot.launcher, Constants.CLOSE_LAUNCHER_WHEELS_ENCODER_SPEED));
     xButton.whileHeld(new TurnToTape(Robot.launcherAimingSubsystem, Robot.tankDrive));
     yButton.whileHeld(new TargetingVision(Robot.launcherAimingSubsystem));

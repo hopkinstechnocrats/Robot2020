@@ -1,7 +1,7 @@
 package frc.robot.subsystems;
 
 import static org.junit.Assert.*;
-// import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.*;
 import edu.wpi.first.wpilibj.*;
 import org.junit.*;
 import frc.robot.Components;
@@ -22,12 +22,13 @@ public class TankDriveTest {
 
     @Before
     public void setup() {
-        // mocktalonleft1 = mock(Talon.class);
-        // mocktalonleft2 = mock(Talon.class);
-        // mocktalonright1 = mock(Talon.class);
-        // mocktalonright2 = mock(Talon.class);
-        // controller = mock(XboxController.class);
+        mocktalonleft1 = mock(Talon.class);
+        mocktalonleft2 = mock(Talon.class);
+        mocktalonright1 = mock(Talon.class);
+        mocktalonright2 = mock(Talon.class);
+        controller = mock(XboxController.class);
         drive = new TankDrive(mocktalonleft1, mocktalonleft2, mocktalonright1, mocktalonright2, controller);
+        drive.speed = 1;
     }
 
 
@@ -44,10 +45,11 @@ public class TankDriveTest {
 
     private void testDriveTemplate(double leftspeed, double rightspeed) {
         drive.tankDrive(leftspeed, rightspeed, false);
-        // verify(mocktalonleft1).set(applyDeadband(leftspeed));
-        // verify(mocktalonleft2).set(applyDeadband(leftspeed));
-        // verify(mocktalonright1).set(-applyDeadband(rightspeed));
-        // verify(mocktalonright2).set(-applyDeadband(rightspeed));
+        System.out.println(String.format("leftspeed: %f\trightspeed: %f\tdeadbanded leftspeed: %f\tdeadbanded rightspeed: %f", leftspeed, rightspeed, applyDeadband(leftspeed), applyDeadband(rightspeed)));
+        verify(mocktalonleft1).set(applyDeadband(leftspeed));
+        verify(mocktalonleft2).follow(mocktalonleft1);
+        verify(mocktalonright1).set(-applyDeadband(rightspeed));
+        verify(mocktalonright2).follow(mocktalonright1);
     }
 
     @Test

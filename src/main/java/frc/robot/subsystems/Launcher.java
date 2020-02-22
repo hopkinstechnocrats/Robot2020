@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.commands.SpinLauncher;
@@ -38,6 +39,7 @@ public class Launcher extends Subsystem {
     right.configureLauncherFalcon();
     left.follow(right);
     left.setInverted(true);
+    SmartDashboard.putNumber("LauncherWheelsSetSpeed", 5000);
   }
 
   public void spinWheels(double speed) {

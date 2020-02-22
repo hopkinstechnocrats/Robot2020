@@ -78,10 +78,10 @@ public class TankDrive extends Subsystem {
     this.flipped = flipped;
   }
 
-  public boolean loadMotionProfile(String name) throws IOException{
+  public boolean loadMotionProfile(String name, Boolean isInverted) throws IOException{
     boolean success = true;
-    success = success && leftTalon1.loadMotionProfile(name, (name+".left.pf1.csv"), true);
-    success = success && rightTalon1.loadMotionProfile(name, (name+".right.pf1.csv"));
+    success = success && leftTalon1.loadMotionProfile(name, (name+".left.pf1.csv"), isInverted);
+    success = success && rightTalon1.loadMotionProfile(name, (name+".right.pf1.csv"), !isInverted);
     return success;
   }
 
@@ -120,6 +120,14 @@ public class TankDrive extends Subsystem {
   public void zeroEncoders() {
     leftTalon1.zeroEncoder();
     rightTalon1.zeroEncoder();
+  }
+
+  public void feedMotorSafety() {
+    leftTalon1.feed();
+    rightTalon1.feed();
+    leftTalon2.feed();
+    rightTalon2.feed();
+    diffDrive.feed();
   }
 
 }
