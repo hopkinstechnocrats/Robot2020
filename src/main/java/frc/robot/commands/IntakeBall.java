@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.TankDrive;
 import edu.wpi.first.wpilibj.buttons.POVButton;
-import frc.robot.Constants;
+import frc.robot.data.Constants;
 import frc.robot.Robot;
 
 public class IntakeBall extends Command {

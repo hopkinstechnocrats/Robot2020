@@ -7,17 +7,9 @@
 
 package frc.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
-import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.Climb;
-import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.TankDrive;
-import edu.wpi.first.wpilibj.buttons.POVButton;
-import frc.robot.Constants;
-import frc.robot.Robot;
+
 
 public class StopClimb extends Command {
 

@@ -7,7 +7,7 @@
 
 package frc.robot.motion;
 
-import frc.robot.Constants;
+import frc.robot.data.Constants;
 
 /**
  * Twists clockwise about the center of the robot at a specified angular speed

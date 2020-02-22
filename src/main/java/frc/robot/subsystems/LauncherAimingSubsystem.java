@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Constants;
+import frc.robot.data.Constants;
 import frc.robot.commands.LauncherAimingSubsystemDefaultCommand;
 import frc.robot.motion.Movement;
 import frc.robot.targeting.aiming.AimingSubsystem;

@@ -9,7 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.Constants;
+import frc.robot.data.Constants;
 import frc.robot.commands.FeedBall;
 import frc.robot.commands.StopFeed;
 import frc.robot.components.Talon;

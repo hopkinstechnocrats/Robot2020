@@ -8,7 +8,7 @@
 package frc.robot.components.configurations;
 import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 
-import frc.robot.Constants;
+import frc.robot.data.Constants;
 
 /**
  * Add your docs here.

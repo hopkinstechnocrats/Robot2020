@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Constants;
+import frc.robot.data.Constants;
 import frc.robot.Robot;
 import frc.robot.commands.SpinLauncher;
 import frc.robot.commands.StopLauncher;

@@ -9,7 +9,7 @@ package frc.robot.targeting.optimization;
 
 import java.util.Map;
 
-import frc.robot.Constants;
+import frc.robot.data.Constants;
 import frc.robot.motion.OneSidedRotation;
 import frc.robot.motion.Movement;
 import frc.robot.targeting.vision.CameraData;
