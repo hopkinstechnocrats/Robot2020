@@ -10,7 +10,6 @@ package frc.robot.targeting.optimization;
 import java.util.Map;
 
 import frc.robot.motion.Movement;
-import frc.robot.targeting.vision.CameraData;
 
 /**
  * Add your docs here.
@@ -18,6 +17,5 @@ import frc.robot.targeting.vision.CameraData;
 public abstract class Optimizer {
 
     public abstract Movement getMovement(Map<String, Object> parameters);
-
 
 }
