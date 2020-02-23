@@ -7,13 +7,12 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.POVButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.buttons.Trigger;
 import frc.robot.commands.*;
+import frc.robot.data.Constants;
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -111,6 +110,7 @@ public class OI {
     operatorRightStick = new JoystickButton(operatorController, 10);
 
 
+    aButton.whileHeld(new ExtendArm(Robot.intake));
     bButton.whileHeld(new SpinLauncher(Robot.launcher, Constants.CLOSE_LAUNCHER_WHEELS_ENCODER_SPEED));
     xButton.whileHeld(new TurnToTape(Robot.launcherAimingSubsystem, Robot.tankDrive));
     yButton.whileHeld(new TargetingVision(Robot.launcherAimingSubsystem));
@@ -118,8 +118,8 @@ public class OI {
     rightBumper.whileHeld(new SpinLauncher(Robot.launcher, Constants.FAR_LAUNCHER_WHEELS_ENCODER_SPEED));
     backButton.whileHeld(new SpinClimb(Robot.climb, -Constants.CLIMB_WINCH_SPEED));
     startButton.whileHeld(new SpinClimb(Robot.climb, Constants.CLIMB_WINCH_SPEED));
-    // leftStick;
-    // rightStick;
+    leftStick.whileHeld(new SpinClimb(Robot.climb, -.75));
+    rightStick.whileHeld(new SpinClimb(Robot.climb, .75));
 
     up.whenPressed(new SetDriveSpeed(Robot.tankDrive, .8));
     right.whenPressed(new SetDriveSpeed(Robot.tankDrive, .65));

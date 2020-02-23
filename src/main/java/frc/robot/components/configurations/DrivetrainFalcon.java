@@ -17,7 +17,7 @@ public class DrivetrainFalcon {
 
     public static TalonFXConfiguration getConfiguration() {
         TalonFXConfiguration conf = new TalonFXConfiguration();
-        conf.openloopRamp = .2;
+        conf.openloopRamp = Constants.DRIVETRAIN_OPEN_LOOP_RAMP;
         conf.slot0.allowableClosedloopError = Constants.DRIVETRAIN_MOTION_PROFILE_ALLOWABLE_ERROR;
         conf.slot0.kP = Constants.DRIVETRAIN_MOTION_PROFILE_KP;
         conf.slot0.kF = Constants.DRIVETRAIN_MOTION_PROFILE_KF;

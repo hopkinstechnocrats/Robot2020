@@ -5,13 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
+package frc.robot.data;
 
 /**
- * Add your docs here.
+ * (Distance to target in inches, Launcher encoder speed) data
  */
-public class ShooterSpeedData {
-    public double[][] data = {
-        {}
+public class LauncherSpeedDataset extends Dataset{
+    public static double [][] data = {
+        {100, 1000},
+        {1000,10000}
     };
 }

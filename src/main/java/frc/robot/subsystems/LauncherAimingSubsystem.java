@@ -12,7 +12,9 @@ import java.util.Map;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.data.Constants;
+import frc.robot.data.LauncherSpeedDataset;
 import frc.robot.commands.LauncherAimingSubsystemDefaultCommand;
+import frc.robot.control.PiecewiseLinearInterpolator;
 import frc.robot.motion.Movement;
 import frc.robot.targeting.aiming.AimingSubsystem;
 import frc.robot.targeting.optimization.TwistOptimizer;
@@ -26,11 +28,15 @@ public class LauncherAimingSubsystem extends AimingSubsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.\
   DistanceCalculator distanceCalculator;
+  PiecewiseLinearInterpolator interpolator;
+
 
   public LauncherAimingSubsystem(double targetPos, Camera source) {
     super(new TwistOptimizer(Constants.LIMELIGHT_TARGET_X, Constants.LIMELIGHT_SENSOR_PHASE), source);
     distanceCalculator = new DistanceCalculator(Constants.CAMERA_ANGLE_TO_HORIZONTAL, Constants.CAMERA_TO_TARGET_VERTICAL_DISTANCE);
     SmartDashboard.putNumber("LauncherWheelsSetSpeed", -8000);
+    interpolator = new PiecewiseLinearInterpolator();
+    interpolator.setDataset(new LauncherSpeedDataset());
   }
 
   public Movement getDrivetrainAction() {
@@ -54,7 +60,19 @@ public class LauncherAimingSubsystem extends AimingSubsystem {
     return returnValue;
   }
 
-  public Camera getSource(){
+  public double getLauncherSpeed() {
+    try {
+      if ((boolean)this.getHorizontalDistance().get("isTargetVisible")) {
+        return interpolator.get((double)this.getHorizontalDistance().get("horizontalDistance"));
+      }else {
+        throw new Exception();
+      }
+    } catch (Exception e) {
+      return Constants.FAR_LAUNCHER_WHEELS_ENCODER_SPEED;
+    }
+  }
+
+  public Camera getSource() {
     return source;
   }
 

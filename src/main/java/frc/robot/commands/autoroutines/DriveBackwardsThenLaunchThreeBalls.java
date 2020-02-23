@@ -8,6 +8,7 @@
 package frc.robot.commands.autoroutines;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.commands.DriveMotionProfile;
 import frc.robot.subsystems.Feed;
 import frc.robot.subsystems.Launcher;
 import frc.robot.subsystems.TankDrive;
@@ -24,6 +25,6 @@ public class DriveBackwardsThenLaunchThreeBalls extends CommandGroup {
     // addSequential(new FeedBall(feed), 9);
     // addSequential(new SetFeedSpeed(feed, .5));
     addParallel(new DriveBackwards(drivetrain));
-    addParallel(new ShootThreeBalls(launcher, feed));
+    addSequential(new ShootThreeBalls(launcher, feed));
   }
 }

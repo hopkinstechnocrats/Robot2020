@@ -21,11 +21,11 @@ public class ShootThreeBalls extends CommandGroup {
    * Add your docs here.
    */
   public ShootThreeBalls(Launcher launcher, Feed feed) {
-    addSequential(new StopLauncher(launcher), 3);
-    addSequential(new SpinLauncher(launcher, Constants.CLOSE_LAUNCHER_WHEELS_ENCODER_SPEED), 2);
-    addParallel(new SetFeedSpeed(feed, .35));
-    addParallel(new SpinLauncher(launcher, Constants.CLOSE_LAUNCHER_WHEELS_ENCODER_SPEED), 7);
-    addSequential(new FeedBall(feed, false), 7);
+    addSequential(new StopLauncher(launcher), 2);
+    addSequential(new SpinLauncher(launcher, Constants.CLOSE_LAUNCHER_WHEELS_ENCODER_SPEED), 1);
+    addParallel(new SetFeedSpeed(feed, .5));
+    addParallel(new SpinLauncher(launcher, Constants.CLOSE_LAUNCHER_WHEELS_ENCODER_SPEED), 4);
+    addSequential(new FeedBall(feed, false), 4);
     addSequential(new SetFeedSpeed(feed, .5));
   }
 }

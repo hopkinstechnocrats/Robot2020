@@ -7,17 +7,15 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.data.Constants;
 import frc.robot.Robot;
-import frc.robot.commands.SpinLauncher;
 import frc.robot.commands.StopLauncher;
 import frc.robot.components.*;
+import frc.robot.control.PiecewiseLinearInterpolator;
+import frc.robot.data.LauncherSpeedDataset;
 
 
 /**
@@ -52,6 +50,10 @@ public class Launcher extends Subsystem {
 
   public void setZero() {
     right.set(0);
+  }
+
+  public void getCalculatedSpeed() {
+
   }
 
   @Override
