@@ -27,7 +27,7 @@ public class DriveMotionProfileTest {
     @Before
     public void setup() {
         subsystem = mock(TankDrive.class);
-        command = new DriveMotionProfile("testname", subsystem);
+        command = new DriveMotionProfile("testname", subsystem, false);
     }; 
 
     @Test
@@ -35,7 +35,7 @@ public class DriveMotionProfileTest {
         command.initialize();
         verify(subsystem).clearOldMotionProfiles();
         verify(subsystem).zeroEncoders();
-        verify(subsystem).loadMotionProfile("testname");
+        verify(subsystem).loadMotionProfile("testname", false);
         verify(subsystem).startMotionProfile("testname");
     }
 

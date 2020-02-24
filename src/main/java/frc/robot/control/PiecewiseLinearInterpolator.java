@@ -12,18 +12,18 @@ package frc.robot.control;
  */
 public class PiecewiseLinearInterpolator extends Interpolator {
 
-    public double get(double xvalue) throws Exception {
+    public double get(double xvalue) throws OutOfDatasetRangeException {
         double [][] nearPoints = getNearPoints(xvalue);
         double [][] zeroPoints = {{0d,0d},{0d,0d}};
         if (nearPoints == zeroPoints) {
-            throw new Exception("xvalue out of range of dataset");
+            throw new OutOfDatasetRangeException();
         }
         double slope = (nearPoints[1][1]-nearPoints[0][1])/(nearPoints[1][0]-nearPoints[0][1]);
         //return the launcher speed estimated by the line between the two closest points in the tuned dataset
         return (nearPoints[0][1]+slope*(xvalue-nearPoints[0][0]));
     }
 
-    private double[][] getNearPoints(double xvalue) {
+    public double[][] getNearPoints(double xvalue) {
         double[] beforePoint = {0d,0d};
         double[] afterPoint = {0d,0d};
         double[][] blankReturnValue = {beforePoint, afterPoint};
@@ -33,7 +33,7 @@ public class PiecewiseLinearInterpolator extends Interpolator {
         }
         //find the launcher speed that is associated with the closest tuned distance in the dataset
         for (int i = 1; i < dataset.getLength(); i++) {
-            if (xvalue < dataset.get(i)[0]){
+            if (xvalue <= dataset.get(i)[0]){
                 beforePoint = dataset.get(i-1);
                 afterPoint = dataset.get(i);
                 break;
