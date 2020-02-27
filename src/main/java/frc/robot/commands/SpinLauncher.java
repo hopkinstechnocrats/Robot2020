@@ -41,7 +41,7 @@ public class SpinLauncher extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    speed = SmartDashboard.getNumber("LauncherWheelsSetSpeed", -8000);
+    
     launcher.spinWheels(speed);
     SmartDashboard.putNumber("LauncherWheelsSpeed", launcher.getSpeed());
     SmartDashboard.putBoolean("IsLauncherFastEnough", launcher.getSpeed()>(speed-50));

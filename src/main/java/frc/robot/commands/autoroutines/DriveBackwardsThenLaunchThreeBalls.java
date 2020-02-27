@@ -24,9 +24,9 @@ public class DriveBackwardsThenLaunchThreeBalls extends CommandGroup {
     // addParallel(new SpinLauncher(launcher, Constants.CLOSE_LAUNCHER_WHEELS_ENCODER_SPEED), 9);
     // addSequential(new FeedBall(feed), 9);
     // addSequential(new SetFeedSpeed(feed, .5));
-    // addParallel(new DriveBackwards(drivetrain));
-    // addSequential(new ShootThreeBalls(launcher, feed));
+    addParallel(new DriveBackwards(drivetrain));
+    addSequential(new ShootThreeBalls(launcher, feed));
     // addSequential(new DriveMotionProfile("driveToTrenchRun", drivetrain, false));
-    addSequential(new DriveMotionProfile("driveAcrossMiddle", drivetrain, true));
+    // addSequential(new DriveMotionProfile("driveAcrossMiddle", drivetrain, true));
   }
 }

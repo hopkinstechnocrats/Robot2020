@@ -110,7 +110,7 @@ public class OI {
     operatorRightStick = new JoystickButton(operatorController, 10);
 
 
-    aButton.whileHeld(new ExtendArm(Robot.intake));
+    aButton.whenPressed(new ExtendArm(Robot.intake));
     bButton.whileHeld(new SpinLauncher(Robot.launcher, Constants.CLOSE_LAUNCHER_WHEELS_ENCODER_SPEED));
     xButton.whileHeld(new TurnToTape(Robot.launcherAimingSubsystem, Robot.tankDrive));
     yButton.whileHeld(new TargetingVision(Robot.launcherAimingSubsystem));
@@ -133,16 +133,16 @@ public class OI {
     operatorXButton.whenPressed(new ExtendArm(Robot.intake));
     operatorYButton.whileHeld(new SpinLauncher(Robot.launcher, Constants.FAR_LAUNCHER_WHEELS_ENCODER_SPEED));
     operatorLeftBumper.whileHeld(new IntakeBall(Robot.intake, false));
-    operatorRightBumper.whileHeld(new SpinLauncher(Robot.launcher, Constants.FAR_LAUNCHER_WHEELS_ENCODER_SPEED));
+    operatorRightBumper.whileHeld(new SpinLauncher(Robot.launcher, SmartDashboard.getNumber("LauncherWheelsSetSpeed", -8000)));
     operatorBackButton.whileHeld(new IntakeBall(Robot.intake, true));
     operatorStartButton.whileHeld(new SpinLauncher(Robot.launcher, SmartDashboard.getNumber("LauncherSpeed", 0)));
     operatorLeftStick.whileHeld(new FeedBall(Robot.feed, true));
     operatorRightStick.whileHeld(new FeedBall(Robot.feed, false));
 
-    operatorUp.whenPressed(new SetFeedSpeed(Robot.feed, .70));
-    operatorRight.whenPressed(new SetFeedSpeed(Robot.feed, Constants.FEED_WHEELS_SPEED));
-    operatorDown.whenPressed(new SetFeedSpeed(Robot.feed, .40));
-    operatorLeft.whenPressed(new SetFeedSpeed(Robot.feed, .30));
+    operatorUp.whenPressed(new SetFeedSpeed(Robot.feed, 1));
+    operatorRight.whenPressed(new SetFeedSpeed(Robot.feed, .7));
+    operatorDown.whenPressed(new SetFeedSpeed(Robot.feed, Constants.FEED_WHEELS_SPEED));
+    operatorLeft.whenPressed(new SetFeedSpeed(Robot.feed, .35));
 
   }
 

@@ -15,8 +15,8 @@ import frc.robot.data.Constants;
 public class Twist extends Movement {
 
     public Twist(double angularspeed) {
-        this.leftSpeed = angularspeed*Constants.DRIVETRAIN_WIDTH/2;
-        this.rightSpeed = -angularspeed*Constants.DRIVETRAIN_WIDTH/2;
+        this.leftSpeed = Math.copySign(Math.min(Math.abs(angularspeed*Constants.DRIVETRAIN_WIDTH/2), Constants.TWIST_OPTIMIZER_MAX_SPEED), angularspeed);
+        this.rightSpeed = Math.copySign(Math.min(Math.abs(angularspeed*Constants.DRIVETRAIN_WIDTH/2), Constants.TWIST_OPTIMIZER_MAX_SPEED), -angularspeed);
     }
 
 }

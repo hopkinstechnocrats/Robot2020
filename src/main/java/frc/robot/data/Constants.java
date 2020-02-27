@@ -23,7 +23,7 @@ public class Constants {
     public static final boolean INTAKE_SOLENOID_DEFAULT_STATE = true;
     //launcher
     public static final double LAUNCHER_WHEELS_SPEED = -1;
-    public static final double CLOSE_LAUNCHER_WHEELS_ENCODER_SPEED = -7000;
+    public static final double CLOSE_LAUNCHER_WHEELS_ENCODER_SPEED = -8000;
     public static final double MEDIUM_LAUNCHER_WHEELS_ENCODER_SPEED = -10000;
     public static final double FAR_LAUNCHER_WHEELS_ENCODER_SPEED = -10500;
     public static final double LAUNCHER_KP = 0.7;
@@ -31,11 +31,12 @@ public class Constants {
     public static final double LAUNCHER_KD = 60;
     //limelight
     public static final double DRIVETRAIN_WIDTH = 27;
-    public static final double TWIST_OPTIMIZER_KP = 0.003;
+    public static final double TWIST_OPTIMIZER_KP = 0.012;
 	public static final double LIMELIGHT_TARGET_X = 0;
     public static final boolean LIMELIGHT_SENSOR_PHASE = true;
     public static final double CAMERA_ANGLE_TO_HORIZONTAL = 15;
     public static final double CAMERA_TO_TARGET_VERTICAL_DISTANCE = 52.5;
+    public static final double TWIST_OPTIMIZER_MAX_SPEED = 0.3;
     //feed
     public static final double FEED_WHEELS_SPEED = 0.5;
     //climb
