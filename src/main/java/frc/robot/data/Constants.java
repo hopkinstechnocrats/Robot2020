@@ -23,7 +23,7 @@ public class Constants {
     public static final boolean INTAKE_SOLENOID_DEFAULT_STATE = true;
     //launcher
     public static final double LAUNCHER_WHEELS_SPEED = -1;
-    public static final double CLOSE_LAUNCHER_WHEELS_ENCODER_SPEED = -8000;
+    public static final double CLOSE_LAUNCHER_WHEELS_ENCODER_SPEED = -9000;
     public static final double MEDIUM_LAUNCHER_WHEELS_ENCODER_SPEED = -10000;
     public static final double FAR_LAUNCHER_WHEELS_ENCODER_SPEED = -10500;
     public static final double LAUNCHER_KP = 0.7;
@@ -40,7 +40,7 @@ public class Constants {
     //feed
     public static final double FEED_WHEELS_SPEED = 0.5;
     //climb
-    public static final double CLIMB_WINCH_SPEED = 0.5;
+    public static final double CLIMB_WINCH_SPEED = 1;
     
     
 }

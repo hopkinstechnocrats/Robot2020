@@ -80,8 +80,14 @@ public class TankDrive extends Subsystem {
 
   public boolean loadMotionProfile(String name, Boolean isInverted) throws IOException{
     boolean success = true;
-    success = success && leftTalon1.loadMotionProfile(name, (name+".left.pf1.csv"), isInverted);
-    success = success && rightTalon1.loadMotionProfile(name, (name+".right.pf1.csv"), !isInverted);
+    if(isInverted) {
+      success = success && leftTalon1.loadMotionProfile(name, (name+".left.pf1.csv"), true);
+      success = success && rightTalon1.loadMotionProfile(name, (name+".right.pf1.csv"), false);
+    } else {
+      success = success && leftTalon1.loadMotionProfile(name, (name+".right.pf1.csv"), false);
+      success = success && rightTalon1.loadMotionProfile(name, (name+".left.pf1.csv"), true);
+    }
+    
     return success;
   }
 

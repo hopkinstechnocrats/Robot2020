@@ -13,12 +13,12 @@ import frc.robot.subsystems.Feed;
 import frc.robot.subsystems.Launcher;
 import frc.robot.subsystems.TankDrive;
 
-public class DriveBackwardsThenLaunchThreeBalls extends CommandGroup {
-  /**
-   * Add your docs here.
-   */
-  public DriveBackwardsThenLaunchThreeBalls(Launcher launcher, Feed feed, TankDrive drivetrain) {
-    addSequential(new DriveMotionProfile("backwardsOneFoot", drivetrain, true));
-    addSequential(new ShootThreeBalls(launcher, feed));
-  }
+public class DriveToTrenchRun extends CommandGroup {
+    /**
+     * Add your docs here.
+     */
+    public DriveToTrenchRun(TankDrive drivetrain) {
+        addSequential(new DriveMotionProfile("turnAround", drivetrain, true));
+        addSequential(new DriveMotionProfile("driveToTrenchRun", drivetrain, false));
+    }
 }

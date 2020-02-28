@@ -64,10 +64,6 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("DriveBackwardsThenLaunchThreeBalls", new DriveBackwardsThenLaunchThreeBalls(launcher, feed, tankDrive));
     m_chooser.addOption("ThreeBallsFromStartingPosition", new ShootThreeBalls(launcher, feed));
     SmartDashboard.putData("Autonomous Routine", m_chooser);
-    //tankDrive = new TankDrive((Talon)components.getComponent("leftTalon1"), (Talon)components.getComponent("leftTalon2"), (Talon)components.getComponent("rightTalon1"), (Talon)components.getComponent("rightTalon2"));
-    // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
-    // chooser.addOption("My Auto", new MyAutoCommand());
-    // SmartDashboard.putData("Auto mode", m_chooser);
   }
 
   /**

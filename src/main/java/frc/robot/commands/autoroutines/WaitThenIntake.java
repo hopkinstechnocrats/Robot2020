@@ -9,13 +9,21 @@ package frc.robot.commands.autoroutines;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.DriveMotionProfile;
+import frc.robot.commands.FeedBall;
+import frc.robot.commands.IntakeBall;
+import frc.robot.commands.SetFeedSpeed;
+import frc.robot.subsystems.Feed;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Launcher;
 import frc.robot.subsystems.TankDrive;
 
-public class DriveBackwards extends CommandGroup {
+public class WaitThenIntake extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public DriveBackwards(TankDrive drivetrain) {
-    addSequential(new DriveMotionProfile("backwardsOneFoot", drivetrain, true));
+  public WaitThenIntake(Launcher launcher, Feed feed, TankDrive drivetrain, Intake intake, double waitTime, double intakeTime) {
+    addSequential(new SetFeedSpeed(feed, 1), waitTime);
+    addParallel(new FeedBall(feed, false));
+    addSequential(new IntakeBall(intake, false), intakeTime);
   }
 }

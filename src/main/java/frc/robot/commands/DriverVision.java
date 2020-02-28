@@ -38,7 +38,7 @@ public class DriverVision extends Command {
 
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called when another command which requires one or more of the same

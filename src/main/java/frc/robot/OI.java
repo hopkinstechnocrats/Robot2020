@@ -141,8 +141,8 @@ public class OI {
 
     operatorUp.whenPressed(new SetFeedSpeed(Robot.feed, 1));
     operatorRight.whenPressed(new SetFeedSpeed(Robot.feed, .7));
-    operatorDown.whenPressed(new SetFeedSpeed(Robot.feed, Constants.FEED_WHEELS_SPEED));
-    operatorLeft.whenPressed(new SetFeedSpeed(Robot.feed, .35));
+    operatorDown.whileHeld(new SpinClimb(Robot.climb, -Constants.CLIMB_WINCH_SPEED));
+    operatorLeft.whileHeld(new SpinClimb(Robot.climb, Constants.CLIMB_WINCH_SPEED));
 
   }
 

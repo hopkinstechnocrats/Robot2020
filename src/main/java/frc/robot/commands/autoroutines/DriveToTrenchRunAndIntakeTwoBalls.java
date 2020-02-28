@@ -10,15 +10,16 @@ package frc.robot.commands.autoroutines;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.DriveMotionProfile;
 import frc.robot.subsystems.Feed;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Launcher;
 import frc.robot.subsystems.TankDrive;
 
-public class DriveBackwardsThenLaunchThreeBalls extends CommandGroup {
+public class DriveToTrenchRunAndIntakeTwoBalls extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public DriveBackwardsThenLaunchThreeBalls(Launcher launcher, Feed feed, TankDrive drivetrain) {
-    addSequential(new DriveMotionProfile("backwardsOneFoot", drivetrain, true));
-    addSequential(new ShootThreeBalls(launcher, feed));
+  public DriveToTrenchRunAndIntakeTwoBalls(Launcher launcher, Feed feed, TankDrive drivetrain, Intake intake) {
+    addParallel(new WaitThenIntake(launcher, feed, drivetrain, intake, 3, 3));
+    addSequential(new DriveToTrenchRun(drivetrain));
   }
 }
