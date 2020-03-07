@@ -14,8 +14,9 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.DriverVision;
-import frc.robot.commands.autoroutines.DriveBackwards;
+// import frc.robot.commands.autoroutines.DriveBackwards;
 import frc.robot.commands.autoroutines.DriveBackwardsThenLaunchThreeBalls;
+import frc.robot.commands.autoroutines.LaunchThreeBallsThenPickupTwo;
 import frc.robot.commands.autoroutines.ShootThreeBalls;
 import frc.robot.components.Limelight;
 import frc.robot.components.Talon;
@@ -60,8 +61,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     ((Limelight)launcherAimingSubsystem.getSource()).setPipeline(1);
-    m_chooser.addOption("DriveBackwards", new DriveBackwards(tankDrive));
-    m_chooser.addOption("DriveBackwardsThenLaunchThreeBalls", new DriveBackwardsThenLaunchThreeBalls(launcher, feed, tankDrive));
+    // m_chooser.addOption("DriveBackwards", new DriveBackwards(tankDrive));
+    m_chooser.addOption("DriveBackwardsThenLaunchThreeBalls", new DriveBackwardsThenLaunchThreeBalls(launcher, feed, tankDrive, .5));
     m_chooser.addOption("ThreeBallsFromStartingPosition", new ShootThreeBalls(launcher, feed));
     SmartDashboard.putData("Autonomous Routine", m_chooser);
   }
@@ -108,7 +109,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     // m_autonomousCommand = m_chooser.getSelected();
-    m_autonomousCommand = new DriveBackwardsThenLaunchThreeBalls(launcher, feed, tankDrive);
+    m_autonomousCommand = new LaunchThreeBallsThenPickupTwo(launcher, feed, tankDrive, intake);
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
      * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand

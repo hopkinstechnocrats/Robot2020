@@ -8,7 +8,7 @@
 package frc.robot.commands.autoroutines;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.commands.DriveMotionProfile;
+import frc.robot.commands.StopLauncher;
 import frc.robot.subsystems.Feed;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Launcher;
@@ -19,7 +19,8 @@ public class LaunchThreeBallsThenPickupTwo extends CommandGroup {
    * Add your docs here.
    */
   public LaunchThreeBallsThenPickupTwo(Launcher launcher, Feed feed, TankDrive drivetrain, Intake intake) {
-    addSequential(new DriveBackwardsThenLaunchThreeBalls(launcher, feed, drivetrain));
+    addSequential(new DriveBackwardsThenLaunchThreeBalls(launcher, feed, drivetrain, .5), 10);
+    addSequential(new StopLauncher(launcher), 1);
     addSequential(new DriveToTrenchRunAndIntakeTwoBalls(launcher, feed, drivetrain, intake));
   }
 }

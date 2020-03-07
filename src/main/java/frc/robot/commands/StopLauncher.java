@@ -32,6 +32,7 @@ public class StopLauncher extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    SmartDashboard.putNumber("LauncherWheelsSetSpeed", 0);
     SmartDashboard.putNumber("LauncherWheelsSpeed", launcher.getSpeed());
     SmartDashboard.putBoolean("IsLauncherFastEnough", launcher.getSpeed()>(Constants.CLOSE_LAUNCHER_WHEELS_ENCODER_SPEED));
     launcher.setZero();

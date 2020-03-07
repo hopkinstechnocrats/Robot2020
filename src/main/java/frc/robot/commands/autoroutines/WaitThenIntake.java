@@ -8,10 +8,10 @@
 package frc.robot.commands.autoroutines;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.commands.DriveMotionProfile;
 import frc.robot.commands.FeedBall;
 import frc.robot.commands.IntakeBall;
 import frc.robot.commands.SetFeedSpeed;
+import frc.robot.commands.StopFeed;
 import frc.robot.subsystems.Feed;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Launcher;
@@ -21,9 +21,14 @@ public class WaitThenIntake extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public WaitThenIntake(Launcher launcher, Feed feed, TankDrive drivetrain, Intake intake, double waitTime, double intakeTime) {
+  public WaitThenIntake(Launcher launcher, Feed feed, TankDrive drivetrain, Intake intake, double waitTime, double intakeTime, double spaceTime) {
     addSequential(new SetFeedSpeed(feed, 1), waitTime);
-    addParallel(new FeedBall(feed, false));
-    addSequential(new IntakeBall(intake, false), intakeTime);
+    addParallel(new IntakeBall(intake, false));
+    addSequential(new FeedBall(feed, false), intakeTime);
+    addSequential(new StopFeed(feed), spaceTime);
+    addSequential(new FeedBall(feed, false), intakeTime);
+    addSequential(new StopFeed(feed), spaceTime);
+    addSequential(new FeedBall(feed, false), intakeTime);
+    addSequential(new StopFeed(feed), spaceTime);
   }
 }

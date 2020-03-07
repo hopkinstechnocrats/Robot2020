@@ -5,32 +5,24 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.autoroutines;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.subsystems.Launcher;
+import frc.robot.motion.Forwards;
 import frc.robot.subsystems.TankDrive;
-import frc.robot.components.*;
 
-public class SpinLauncher extends Command {
+public class PercentOutputDrivingForwards extends Command {
 
-  TankDrive drivetrain;
-  double deadband;
-  boolean isFlipped;
-  boolean isSquared;
   XboxController controller;
-  Talon left;
-  Talon right;
   double speed;
-  Launcher launcher;
+  TankDrive subsystem;
 
-  public SpinLauncher(Launcher launcher, double speed) {
+  public PercentOutputDrivingForwards(TankDrive subsystem, double speed) {
     // Use requires() here to declare subsystem dependencies
-    this.launcher = launcher;
+    this.subsystem = subsystem;
     this.speed = speed;
-    requires(launcher);
+    requires(subsystem);
   }
 
   // Called just before this Command runs the first time
@@ -41,10 +33,7 @@ public class SpinLauncher extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    SmartDashboard.putNumber("LauncherWheelsSetSpeed", speed);
-    launcher.spinWheels(speed);
-    SmartDashboard.putNumber("LauncherWheelsSpeed", launcher.getSpeed());
-    SmartDashboard.putBoolean("IsLauncherFastEnough", launcher.getSpeed()>(speed-50));
+    subsystem.driveMovement(new Forwards(speed, speed));
   }
 
   // Make this return true when this Command no longer needs to run execute()

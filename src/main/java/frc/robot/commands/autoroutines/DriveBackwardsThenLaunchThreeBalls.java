@@ -17,8 +17,8 @@ public class DriveBackwardsThenLaunchThreeBalls extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public DriveBackwardsThenLaunchThreeBalls(Launcher launcher, Feed feed, TankDrive drivetrain) {
+  public DriveBackwardsThenLaunchThreeBalls(Launcher launcher, Feed feed, TankDrive drivetrain, double speed) {
     addSequential(new DriveMotionProfile("backwardsOneFoot", drivetrain, true));
-    addSequential(new ShootThreeBalls(launcher, feed));
+    addSequential(new ShootThreeBalls(launcher, feed), 10);
   }
 }

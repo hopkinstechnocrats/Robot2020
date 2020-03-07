@@ -16,16 +16,16 @@ public class Constants {
     public static final double DRIVETRAIN_MOTION_PROFILE_KP = 1;
     public static final double DRIVETRAIN_MOTION_PROFILE_KF = 0.04;
     public static final int DRIVETRAIN_MOTION_PROFILE_ALLOWABLE_ERROR = 0;
-    public static final double DRIVETRAIN_OPEN_LOOP_RAMP = .4;
+    public static final double DRIVETRAIN_OPEN_LOOP_RAMP = .7;
     //intake
     public static final double INTAKE_WHEELS_SPEED = 1;
     public static final int INTAKE_SOLENOID_PORT = 0;
     public static final boolean INTAKE_SOLENOID_DEFAULT_STATE = true;
     //launcher
     public static final double LAUNCHER_WHEELS_SPEED = -1;
-    public static final double CLOSE_LAUNCHER_WHEELS_ENCODER_SPEED = -9000;
-    public static final double MEDIUM_LAUNCHER_WHEELS_ENCODER_SPEED = -10000;
-    public static final double FAR_LAUNCHER_WHEELS_ENCODER_SPEED = -10500;
+    public static final double CLOSE_LAUNCHER_WHEELS_ENCODER_SPEED = -9500;
+    public static final double MEDIUM_LAUNCHER_WHEELS_ENCODER_SPEED = -10100;
+    public static final double FAR_LAUNCHER_WHEELS_ENCODER_SPEED = -10400;
     public static final double LAUNCHER_KP = 0.7;
     public static final double LAUNCHER_KI = 0.0001;
     public static final double LAUNCHER_KD = 60;

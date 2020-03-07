@@ -133,7 +133,7 @@ public class OI {
     operatorXButton.whenPressed(new ExtendArm(Robot.intake));
     operatorYButton.whileHeld(new SpinLauncher(Robot.launcher, Constants.FAR_LAUNCHER_WHEELS_ENCODER_SPEED));
     operatorLeftBumper.whileHeld(new IntakeBall(Robot.intake, false));
-    operatorRightBumper.whileHeld(new SpinLauncher(Robot.launcher, SmartDashboard.getNumber("LauncherWheelsSetSpeed", -8000)));
+    operatorRightBumper.whileHeld(new SpinLauncher(Robot.launcher, -12000));
     operatorBackButton.whileHeld(new IntakeBall(Robot.intake, true));
     operatorStartButton.whileHeld(new SpinLauncher(Robot.launcher, SmartDashboard.getNumber("LauncherSpeed", 0)));
     operatorLeftStick.whileHeld(new FeedBall(Robot.feed, true));
