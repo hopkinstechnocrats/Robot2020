@@ -30,8 +30,8 @@ public class Intake extends Subsystem {
   public Intake(Talon motor, XboxController controller) {
     this.controller = controller;
     this.motor = motor;
-    this.actuator = new LinearActuator(Constants.INTAKE_SOLENOID_PORT, Constants.INTAKE_SOLENOID_DEFAULT_STATE);
-    this.actuator.initialize();
+    //this.actuator = new LinearActuator(Constants.INTAKE_SOLENOID_PORT, Constants.INTAKE_SOLENOID_DEFAULT_STATE);
+    //this.actuator.initialize();
   }
 
   public void runIntake(boolean inverted) {
@@ -46,9 +46,9 @@ public class Intake extends Subsystem {
     motor.set(0);
   }
 
-  public void toggleActuator() {
-    actuator.toggleState();
-  }
+  // public void toggleActuator() {
+  //   actuator.toggleState();
+  // }
 
   @Override
   public void initDefaultCommand() {

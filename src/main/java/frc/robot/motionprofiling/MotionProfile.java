@@ -28,7 +28,6 @@ public class MotionProfile {
     boolean isInverted;
 
     public MotionProfile(String csvpath, boolean isInverted) throws IOException{
-        // @TODO Fix profile path location
         // This won't actually work because the code runs on the ROBOT, which does not have a C: drive.
         // The path files need to be bundled in the code sent to the robot somehow.
         File pathweaverFolder = new File(Filesystem.getDeployDirectory() + "/PathWeaver/output/");
