@@ -33,14 +33,14 @@ public class Feed extends Subsystem {
 
   public void runFeed(boolean inverted) {
     if(inverted){
-      motor.set(-speed);
+      motor.lazySet(-speed);
     }else{
-      motor.set(speed);
+      motor.lazySet(speed);
     }
   }
 
   public void stopFeed(){
-    motor.set(0);
+    motor.lazySet(0);
   }
 
   public double getSpeed(){
