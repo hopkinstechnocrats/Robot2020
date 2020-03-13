@@ -13,9 +13,13 @@ import frc.robot.subsystems.Feed;
 import frc.robot.subsystems.Launcher;
 import frc.robot.subsystems.TankDrive;
 
+/**
+ * Drives from the end position of driveBackwards to the trench run, in position to pickup the first two balls
+ */
 public class DriveToTrenchRun extends CommandGroup {
     /**
-     * Add your docs here.
+     * Drives from the end position of driveBackwards to the trench run, in position to pickup the first two balls
+     * @param drivetrain drivetrain subsystem object
      */
     public DriveToTrenchRun(TankDrive drivetrain) {
         addSequential(new DriveMotionProfile("turnAround", drivetrain, true));

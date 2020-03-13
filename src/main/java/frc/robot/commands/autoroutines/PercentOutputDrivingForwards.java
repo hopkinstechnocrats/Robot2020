@@ -12,18 +12,27 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.motion.Forwards;
 import frc.robot.subsystems.TankDrive;
 
+/**
+ * Drives forwards at a certain percent output indefinitely (timeout intended when initializing)
+ */
 public class PercentOutputDrivingForwards extends Command {
 
   XboxController controller;
   double speed;
   TankDrive subsystem;
 
+  /**
+   * Drives forwards at a certain percent output indefinitely (timeout intended when initializing)
+   * @param subsystem drivetrain subsystem object
+   * @param speed percent output speed, between -1 and 1.
+   */
   public PercentOutputDrivingForwards(TankDrive subsystem, double speed) {
     // Use requires() here to declare subsystem dependencies
     this.subsystem = subsystem;
     this.speed = speed;
     requires(subsystem);
   }
+
 
   // Called just before this Command runs the first time
   @Override
