@@ -14,12 +14,20 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Launcher;
 import frc.robot.subsystems.TankDrive;
 
+/**
+ * Drives backwards from the initiation line, launches three preloaded balls, then drives to the trench run and picks up two more.
+ */
 public class LaunchThreeBallsThenPickupTwo extends CommandGroup {
+
   /**
-   * Add your docs here.
+   * Drives backwards from the initiation line, launches three preloaded balls, then drives to the trench run and picks up two more.
+   * @param launcher launcher subsystem object
+   * @param feed feed subsystem object
+   * @param drivetrain drivetrain subsystem object
+   * @param intake intake subsystem object
    */
   public LaunchThreeBallsThenPickupTwo(Launcher launcher, Feed feed, TankDrive drivetrain, Intake intake) {
-    addSequential(new DriveBackwardsThenLaunchThreeBalls(launcher, feed, drivetrain, .5), 10);
+    addSequential(new DriveBackwardsThenLaunchThreeBalls(launcher, feed, drivetrain), 10);
     addSequential(new StopLauncher(launcher), 1);
     addSequential(new DriveToTrenchRunAndIntakeTwoBalls(launcher, feed, drivetrain, intake));
   }

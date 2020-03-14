@@ -13,11 +13,18 @@ import frc.robot.subsystems.Feed;
 import frc.robot.subsystems.Launcher;
 import frc.robot.subsystems.TankDrive;
 
+/**
+ * Auto routine that starts on the initiation line, drives backwards two feet, then launches three balls into the outer port
+ */
 public class DriveBackwardsThenLaunchThreeBalls extends CommandGroup {
+
   /**
-   * Add your docs here.
+   * Auto routine that starts on the initiation line, drives backwards two feet, then launches three balls into the outer port
+   * @param launcher launcher subsystem object
+   * @param feed feed subsystem object
+   * @param drivetrain drivetrain subsystem object
    */
-  public DriveBackwardsThenLaunchThreeBalls(Launcher launcher, Feed feed, TankDrive drivetrain, double speed) {
+  public DriveBackwardsThenLaunchThreeBalls(Launcher launcher, Feed feed, TankDrive drivetrain) {
     addSequential(new DriveMotionProfile("backwardsOneFoot", drivetrain, true));
     addSequential(new ShootThreeBalls(launcher, feed), 10);
   }

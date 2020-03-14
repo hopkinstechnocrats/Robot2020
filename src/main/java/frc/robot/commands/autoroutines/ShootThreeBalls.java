@@ -16,9 +16,15 @@ import frc.robot.commands.StopLauncher;
 import frc.robot.subsystems.Feed;
 import frc.robot.subsystems.Launcher;
 
+/**
+ * Activates launcher and feed to shoot three preloaded balls
+ */
 public class ShootThreeBalls extends CommandGroup {
+
   /**
-   * Add your docs here.
+   * Activates launcher and feed to shoot three preloaded balls
+   * @param launcher launcher subsystem object
+   * @param feed feed subsystem object
    */
   public ShootThreeBalls(Launcher launcher, Feed feed) {
     addSequential(new StopLauncher(launcher), 1.5);

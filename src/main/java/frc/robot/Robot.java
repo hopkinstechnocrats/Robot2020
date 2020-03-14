@@ -62,7 +62,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     ((Limelight)launcherAimingSubsystem.getSource()).setPipeline(1);
     // m_chooser.addOption("DriveBackwards", new DriveBackwards(tankDrive));
-    m_chooser.addOption("DriveBackwardsThenLaunchThreeBalls", new DriveBackwardsThenLaunchThreeBalls(launcher, feed, tankDrive, .5));
+    m_chooser.addOption("DriveBackwardsThenLaunchThreeBalls", new DriveBackwardsThenLaunchThreeBalls(launcher, feed, tankDrive));
     m_chooser.addOption("ThreeBallsFromStartingPosition", new ShootThreeBalls(launcher, feed));
     SmartDashboard.putData("Autonomous Routine", m_chooser);
   }
