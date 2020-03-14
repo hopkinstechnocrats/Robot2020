@@ -10,10 +10,10 @@ package frc.robot.components;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import frc.robot.logger.Status;
-import frc.robot.logger.StatusType;
-import frc.robot.targeting.vision.Camera;
-import frc.robot.targeting.vision.LimelightCameraData;
+//import frc.lib.logger.Status;
+import frc.lib.logger.StatusType;
+import frc.lib.targeting.vision.Camera;
+import frc.lib.targeting.vision.LimelightCameraData;
 
 /**
  * Add your docs here.
@@ -60,9 +60,9 @@ public class Limelight extends Component implements Camera{
         snapshot = table.getEntry("snapshot");
     }
 
-    public Status getStatus(){
-        return new Status(StatusType.LOG, "Example Limelight Log Message");
-    }
+//    public Status getStatus(){
+//        return new Status(StatusType.LOG, "Example Limelight Log Message");
+//    }
 
     public void setPipeline(int pipelinenumber){
         pipeline.setNumber(pipelinenumber);

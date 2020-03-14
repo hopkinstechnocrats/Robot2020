@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.DriverVision;
 // import frc.robot.commands.autoroutines.DriveBackwards;
 import frc.robot.commands.autoroutines.DriveBackwardsThenLaunchThreeBalls;
 import frc.robot.commands.autoroutines.LaunchThreeBallsThenPickupTwo;
@@ -26,7 +25,7 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Launcher;
 import frc.robot.subsystems.LauncherAimingSubsystem;
 import frc.robot.subsystems.TankDrive;
-import frc.robot.targeting.vision.Camera;
+import frc.lib.targeting.vision.Camera;
 import frc.robot.data.Constants;
 
 /**
