@@ -19,7 +19,7 @@ import java.util.*;
 public class Talon extends Component implements SpeedController{
 
     public WPI_TalonFX hardwareTalon;
-    public double lastPercentoutput = 0;
+    public double lastPercentOutput = 0;
     HashMap<String, MotionProfile> motionProfiles = new HashMap<String, MotionProfile>();
 
     public Talon(int id){
@@ -31,11 +31,15 @@ public class Talon extends Component implements SpeedController{
         hardwareTalon.set(ControlMode.PercentOutput, percentoutput);
     }
 
-    public void set(double percentoutput){
-        if(!(percentoutput == lastPercentoutput)){
-            setPercentOutput(percentoutput);
+    public void lazySet(double percentOutput){
+        if(!(percentOutput == lastPercentOutput)){
+            setPercentOutput(percentOutput);
         }
-        lastPercentoutput = percentoutput;
+        lastPercentOutput = percentOutput;
+    }
+
+    public void set(double percentoutput){
+        setPercentOutput(percentoutput);
     }
 
     public double get(){

@@ -47,7 +47,7 @@ public class Launcher extends Subsystem {
   }
 
   public void setZero() {
-    right.set(0);
+    right.lazySet(0);
   }
 
   public void getCalculatedSpeed() {

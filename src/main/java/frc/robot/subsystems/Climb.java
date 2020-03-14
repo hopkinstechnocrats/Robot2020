@@ -28,11 +28,11 @@ public class Climb extends Subsystem {
   }
 
   public void runClimb(double speed) {
-    motor.set(speed);
+    motor.lazySet(speed);
   }
   
   public void stopClimb() {
-      motor.set(0);
+      motor.lazySet(0);
   }
 
   @Override

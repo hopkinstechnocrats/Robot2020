@@ -36,14 +36,14 @@ public class Intake extends Subsystem {
 
   public void runIntake(boolean inverted) {
     if(inverted){
-      motor.set(-Constants.INTAKE_WHEELS_SPEED);
+      motor.lazySet(-Constants.INTAKE_WHEELS_SPEED);
     }else{
-      motor.set(Constants.INTAKE_WHEELS_SPEED);
+      motor.lazySet(Constants.INTAKE_WHEELS_SPEED);
     }
   }
 
   public void stopIntake() {
-    motor.set(0);
+    motor.lazySet(0);
   }
 
   // public void toggleActuator() {
