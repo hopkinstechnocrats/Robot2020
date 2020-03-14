@@ -14,13 +14,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.data.Constants;
 import frc.robot.data.LauncherSpeedDataset;
 import frc.robot.commands.LauncherAimingSubsystemDefaultCommand;
-import frc.robot.control.PiecewiseLinearInterpolator;
-import frc.robot.motion.Movement;
-import frc.robot.targeting.aiming.AimingSubsystem;
-import frc.robot.targeting.optimization.TwistOptimizer;
-import frc.robot.targeting.vision.Camera;
-import frc.robot.targeting.vision.CameraData;
-import frc.robot.targeting.geometry.DistanceCalculator;
+import frc.lib.control.PiecewiseLinearInterpolator;
+import frc.lib.motion.Movement;
+import frc.lib.targeting.aiming.AimingSubsystem;
+import frc.lib.targeting.optimization.TwistOptimizer;
+import frc.lib.targeting.vision.Camera;
+import frc.lib.targeting.vision.CameraData;
+import frc.lib.targeting.geometry.DistanceCalculator;
 /**
  * Add your docs here.
  */

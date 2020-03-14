@@ -4,16 +4,13 @@ import com.ctre.phoenix.ErrorCode;
 import com.ctre.phoenix.motion.MotionProfileStatus;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FollowerType;
-import com.ctre.phoenix.motorcontrol.IMotorController;
-import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import frc.robot.components.configurations.DrivetrainFalcon;
 import frc.robot.components.configurations.LauncherFalcon;
-import frc.robot.logger.Status;
-import frc.robot.logger.StatusType;
-import frc.robot.motionprofiling.MotionProfile;
+//import frc.lib.logger.Status;
+import frc.lib.logger.StatusType;
+import frc.lib.motionprofiling.MotionProfile;
 import edu.wpi.first.wpilibj.SpeedController;
 
 import java.io.IOException;
@@ -69,9 +66,9 @@ public class Talon extends Component implements SpeedController{
         return hardwareTalon.getInverted();
     }
 
-    public Status getStatus(){
-        return new Status(StatusType.LOG, "Example Talon Log Message");
-    }
+//    public Status getStatus(){
+//        return new Status(StatusType.LOG, "Example Talon Log Message");
+//    }
 
     public boolean loadMotionProfile(String name, String ProfilePath) throws IOException{
         return loadMotionProfile(name, ProfilePath, false);

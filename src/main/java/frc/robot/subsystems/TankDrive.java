@@ -10,17 +10,15 @@ package frc.robot.subsystems;
 import java.io.IOException;
 import java.util.HashMap;
 
-import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.commands.JoystickDrive;
 import frc.robot.components.*;
-import frc.robot.motion.Movement;
+import frc.lib.motion.Movement;
 
 import com.ctre.phoenix.motion.MotionProfileStatus;
-import com.ctre.phoenix.motorcontrol.IMotorController;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.

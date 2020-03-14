@@ -7,18 +7,12 @@
 
 package frc.robot.components;
 
-import edu.wpi.first.hal.sim.mockdata.AnalogInDataJNI;
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
-import frc.robot.logger.Status;
-import frc.robot.logger.StatusType;
-import frc.robot.targeting.vision.Camera;
-import frc.robot.targeting.vision.CameraData;
-import frc.robot.targeting.vision.LimelightCameraData;
-import frc.robot.targeting.vision.PixyCameraData;
+//import frc.lib.logger.Status;
+import frc.lib.logger.StatusType;
+import frc.lib.targeting.vision.Camera;
+import frc.lib.targeting.vision.PixyCameraData;
 
 /**
  * Add your docs here.
@@ -37,9 +31,9 @@ public class Pixy extends Component implements Camera {
         pixy_on = new DigitalInput(0);
     }
 
-    public Status getStatus(){
-        return new Status(StatusType.LOG, "Example Limelight Log Message");
-    }
+//    public Status getStatus(){
+//        return new Status(StatusType.LOG, "Example Limelight Log Message");
+//    }
 
     public PixyCameraData getCameraData() {
         PixyCameraData cameraData = new PixyCameraData(pixy_x.getAverageVoltage(), pixy_on.get());

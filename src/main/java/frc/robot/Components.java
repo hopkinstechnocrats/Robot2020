@@ -1,7 +1,6 @@
 package frc.robot;
 
 import java.util.HashMap;
-import frc.robot.logger.Status; //still needs to be implemented
 import frc.robot.components.Component;
 import frc.robot.components.Limelight;
 import frc.robot.components.Talon;
@@ -29,13 +28,13 @@ public class Components {
         components.put(name, component);
     }
     
-    public ArrayList<Status> checkComponents(){
-        ArrayList<Status> compstatuses = new ArrayList<Status>();
-        for (Component comp : components.values()) {
-            compstatuses.add(comp.getStatus());
-        }
-        return compstatuses;
-    }
+//    public ArrayList<Status> checkComponents(){
+//        ArrayList<Status> compstatuses = new ArrayList<Status>();
+//        for (Component comp : components.values()) {
+//            compstatuses.add(comp.getStatus());
+//        }
+//        return compstatuses;
+//    }
 
     public Component getComponent(String name){
         

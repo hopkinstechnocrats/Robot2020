@@ -8,8 +8,8 @@
 package frc.robot.components;
 
 import edu.wpi.first.wpilibj.Solenoid;
-import frc.robot.logger.Status;
-import frc.robot.logger.StatusType;
+//import frc.lib.logger.Status;
+import frc.lib.logger.StatusType;
 
 /**
  * Add your docs here.
@@ -33,8 +33,8 @@ public class LinearActuator extends Component {
         this.hardwareSolenoid.set(this.state);
     }
 
-    public Status getStatus(){
-        return new Status(StatusType.LOG, "Example Limelight Log Message");
-    }
+//    public Status getStatus(){
+//        return new Status(StatusType.LOG, "Example Limelight Log Message");
+//    }
 
 }
